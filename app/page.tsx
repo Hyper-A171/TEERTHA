@@ -3,12 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { db } from '@/lib/db';
 import { Button, Card, CardContent, Badge } from '@/components/ui';
-import { MapPin, ArrowRight, Eye, Calendar, Sparkles, BookOpen } from 'lucide-react';
+import { ArrowRight, Eye, Landmark, Map, MapPin, Rocket, Sparkles } from 'lucide-react';
 
-export const revalidate = 0; // Dynamic rendering for freshness
+export const revalidate = 0;
 
 export default async function HomePage() {
-  // Fetch featured temples and categories
   const temples = await db.temple.findMany({
     take: 3,
     where: { status: 'Active' },
@@ -20,70 +19,59 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="flex flex-col min-h-screen">
-      
-      {/* 1. HERO SECTION */}
-      <section className="relative bg-spiritual-gradient py-24 md:py-32 flex items-center justify-center text-white overflow-hidden border-b border-gold-600/30">
-        {/* Subtle glowing backgrounds */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-700/10 rounded-full blur-3xl" />
-        
-        <div className="max-w-5xl mx-auto px-4 text-center relative z-10 space-y-6">
-          <Badge variant="gold" className="text-[10px] sm:text-xs">
-            🌟 Welcome to Atreal Studios' Teertha Portal
+    <div className="flex min-h-screen flex-col">
+      <section className="relative flex items-center justify-center overflow-hidden border-b border-gold-600/30 bg-spiritual-gradient py-20 text-white md:py-28">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40" />
+
+        <div className="relative z-10 mx-auto max-w-5xl space-y-6 px-4 text-center">
+          <Badge variant="gold" className="gap-1.5 text-[10px] sm:text-xs">
+            <Sparkles className="h-3 w-3" />
+            Welcome to Atreal Studios' Teertha Portal
           </Badge>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold tracking-tight text-white leading-tight">
+
+          <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-7xl">
             Discover the <span className="text-gold-gradient font-serif">Divine Heritage</span> of Ancient Shrines
           </h1>
-          
-          <p className="text-base sm:text-lg md:text-xl text-stone-300 max-w-3xl mx-auto font-sans leading-relaxed">
-            Embark on a sacred journey. Access comprehensive temple information, location maps, local guidance, and rich historical descriptions for India's most revered holy places.
+
+          <p className="mx-auto max-w-3xl text-base leading-relaxed text-stone-300 sm:text-lg md:text-xl">
+            Embark on a sacred journey with temple information, maps, local guidance, and historical descriptions for India's revered holy places.
           </p>
 
-          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button href="/temples" variant="secondary" size="lg" className="w-full sm:w-auto flex items-center gap-2">
+          <div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">
+            <Button href="/temples" variant="secondary" size="lg" className="w-full sm:w-auto">
               <span>Start Pilgrimage Guide</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="h-4 w-4" />
             </Button>
-            <Button href="/about" variant="outline" size="lg" className="w-full sm:w-auto text-white border-white/40 hover:bg-white/10">
+            <Button href="/about" variant="outline" size="lg" className="w-full border-white/40 text-white hover:bg-white/10 sm:w-auto">
               Explore Mission
             </Button>
           </div>
         </div>
 
-        {/* Dynamic decorative elements */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-stone-50 dark:from-neutral-950 to-transparent pointer-events-none" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-stone-50 to-transparent dark:from-neutral-950" />
       </section>
 
-      {/* 2. CATEGORIES PREVIEW */}
-      <section className="py-16 bg-stone-50 dark:bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <h2 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">Pilgrimage Circuits</h2>
-            <p className="text-stone-500 dark:text-stone-400">
-              Browse holy temples categorized under traditional Indian spiritual circuits and paths.
-            </p>
+      <section className="bg-stone-50 py-16 dark:bg-neutral-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-12 max-w-3xl space-y-3 text-center">
+            <h2 className="font-serif text-3xl font-bold text-stone-900 dark:text-white">Pilgrimage Circuits</h2>
+            <p className="text-stone-500 dark:text-stone-400">Browse holy temples categorized under traditional Indian spiritual circuits and paths.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((cat) => (
               <Card key={cat.id} className="premium-card-hover border border-stone-200 dark:border-neutral-800">
-                <CardContent className="p-6 space-y-3 flex flex-col justify-between h-full">
+                <CardContent className="flex h-full flex-col justify-between space-y-3 p-6">
                   <div>
-                    <div className="w-12 h-12 rounded-lg bg-maroon-800/10 dark:bg-gold-500/10 flex items-center justify-center text-maroon-800 dark:text-gold-400 text-xl font-bold mb-4">
-                      🕉️
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-maroon-800/10 text-maroon-800 dark:bg-gold-500/10 dark:text-gold-400">
+                      <Landmark className="h-6 w-6" />
                     </div>
-                    <h3 className="text-lg font-bold font-serif text-stone-900 dark:text-white mb-2">{cat.name}</h3>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-3 leading-relaxed">
-                      {cat.description}
-                    </p>
+                    <h3 className="mb-2 font-serif text-lg font-bold text-stone-900 dark:text-white">{cat.name}</h3>
+                    <p className="line-clamp-3 text-xs leading-relaxed text-stone-500 dark:text-stone-400">{cat.description}</p>
                   </div>
                   <div className="pt-4">
-                    <Link href={`/temples?category=${cat.slug}`}>
-                      <span className="text-xs font-semibold text-amber-600 hover:text-amber-500 flex items-center gap-1">
-                        Explore Temples <ArrowRight className="w-3 h-3" />
-                      </span>
+                    <Link href={`/temples?category=${cat.slug}`} className="flex items-center gap-1 text-xs font-semibold text-amber-600 hover:text-amber-500">
+                      Explore Temples <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </CardContent>
@@ -93,55 +81,47 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. FEATURED TEMPLES */}
-      <section className="py-16 bg-stone-100 dark:bg-neutral-900/40 border-y border-stone-200/50 dark:border-neutral-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div className="space-y-3 max-w-2xl">
+      <section className="border-y border-stone-200/50 bg-stone-100 py-16 dark:border-neutral-900/50 dark:bg-neutral-900/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div className="max-w-2xl space-y-3">
               <Badge variant="default" className="bg-maroon-800/10 text-maroon-800 dark:text-gold-400">Featured Shrines</Badge>
-              <h2 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">Explore Holy Destinations</h2>
-              <p className="text-stone-500 dark:text-stone-400">
-                Plan your visit to these highly revered spiritual centers loaded with historical and mythological records.
-              </p>
+              <h2 className="font-serif text-3xl font-bold text-stone-900 dark:text-white">Explore Holy Destinations</h2>
+              <p className="text-stone-500 dark:text-stone-400">Plan your visit to revered spiritual centers with historical and mythological records.</p>
             </div>
-            <Button href="/temples" variant="outline" className="flex items-center gap-2">
+            <Button href="/temples" variant="outline">
               <span>View All Temples</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {temples.map((temple) => (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {temples.map((temple, index) => (
               <Card key={temple.id} className="premium-card-hover group border border-stone-200/80 dark:border-neutral-800">
                 <div className="relative h-56 w-full overflow-hidden bg-neutral-200">
                   <Image
                     src={temple.thumbnail}
                     alt={temple.name}
                     fill
-                    sizes="(max-w-768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority={index === 0}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3">
+                  <div className="absolute left-3 top-3">
                     <Badge variant="gold">{temple.category.name}</Badge>
                   </div>
                 </div>
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex items-center gap-1.5 text-xs text-amber-600 font-semibold uppercase tracking-wider">
-                    <MapPin className="w-3.5 h-3.5" />
+                <CardContent className="space-y-4 p-6">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-600">
+                    <MapPin className="h-3.5 w-3.5" />
                     <span>{temple.location.split(',')[1] || temple.location}</span>
                   </div>
-                  <h3 className="text-xl font-serif font-bold text-stone-900 dark:text-white leading-tight">
-                    {temple.name}
-                  </h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-3 leading-relaxed">
-                    {temple.description}
-                  </p>
-                  <div className="pt-2">
-                    <Button href={`/temples/${temple.slug}`} variant="primary" size="sm" className="w-full flex items-center justify-center gap-2">
-                      <Eye className="w-4 h-4" />
-                      <span>View Details</span>
-                    </Button>
-                  </div>
+                  <h3 className="font-serif text-xl font-bold leading-tight text-stone-900 dark:text-white">{temple.name}</h3>
+                  <p className="line-clamp-3 text-xs leading-relaxed text-stone-500 dark:text-stone-400">{temple.description}</p>
+                  <Button href={`/temples/${temple.slug}`} variant="primary" size="sm" className="w-full">
+                    <Eye className="h-4 w-4" />
+                    <span>View Details</span>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -149,83 +129,71 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. ABOUT TEERTHA SECTION */}
-      <section className="py-20 bg-stone-50 dark:bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Image grid / decoration */}
-            <div className="relative h-[400px] w-full bg-gradient-to-br from-maroon-800 to-rose-950 rounded-2xl overflow-hidden shadow-2xl p-8 flex flex-col justify-end text-white border border-gold-600/30">
-              <div className="absolute inset-0 bg-neutral-900/40 mix-blend-multiply" />
-              <div className="relative z-10 space-y-4 max-w-md">
-                <Sparkles className="w-8 h-8 text-gold-400" />
-                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white">Connecting pilgrims to ancient divinity.</h3>
-                <p className="text-xs text-stone-300 leading-relaxed">
-                  We believe that spiritual travel is more than a geographic journey; it is an inner transformation. Teertha bridges physical distances to bring sacred spaces closer.
+      <section className="bg-stone-50 py-20 dark:bg-neutral-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <div className="relative flex h-[400px] w-full flex-col justify-end overflow-hidden rounded-lg border border-gold-600/30 bg-gradient-to-br from-maroon-800 to-rose-950 p-8 text-white shadow-xl">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:36px_36px] opacity-30" />
+              <div className="absolute inset-0 bg-neutral-900/35 mix-blend-multiply" />
+              <div className="relative z-10 max-w-md space-y-4">
+                <Sparkles className="h-8 w-8 text-gold-400" />
+                <h3 className="font-serif text-2xl font-bold text-white sm:text-3xl">Connecting pilgrims to ancient divinity.</h3>
+                <p className="text-xs leading-relaxed text-stone-300">
+                  Spiritual travel is more than a geographic journey. Teertha bridges physical distance with trusted sacred-space guidance.
                 </p>
               </div>
             </div>
 
-            {/* Right details */}
             <div className="space-y-6">
-              <Badge variant="gold">ABOUT TEERTHA</Badge>
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-white">
+              <Badge variant="gold">About Teertha</Badge>
+              <h2 className="font-serif text-3xl font-bold text-stone-900 dark:text-white sm:text-4xl">
                 Platform for Divine Pilgrimage Guided by Atreal Studios
               </h2>
-              <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-                Teertha is engineered as a modern digital portal designed to bring structural, historical, and logistic directory details of prominent temples under one banner. In upcoming phases, this directory will scale to provide immersive Virtual Reality (VR) views, Live Darshan feeds, localized audio guides, digital donation channels, and an AI Spiritual assistant.
+              <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-300">
+                Teertha is a modern digital portal for structural, historical, and logistic temple directory details. Upcoming phases are designed for VR views, Live Darshan feeds, localized audio guides, digital donations, and AI spiritual assistance.
               </p>
-              
-              <div className="grid grid-cols-2 gap-6 pt-4">
+
+              <div className="grid grid-cols-1 gap-6 pt-4 sm:grid-cols-2">
                 <div className="flex gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-600 font-bold">
-                    🗺️
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600">
+                    <Map className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-stone-800 dark:text-stone-200 text-sm">Detailed Guides</h4>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">Location info, historical records, and visitor timings.</p>
+                    <h4 className="text-sm font-bold text-stone-800 dark:text-stone-200">Detailed Guides</h4>
+                    <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Location info, historical records, and visitor timings.</p>
                   </div>
                 </div>
-                
+
                 <div className="flex gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-maroon-800/10 flex items-center justify-center text-maroon-800 dark:text-maroon-400 font-bold">
-                    🚀
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-maroon-800/10 text-maroon-800 dark:text-maroon-400">
+                    <Rocket className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-stone-800 dark:text-stone-200 text-sm">Next-Gen Tech</h4>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">Scalable for VR darshan, donations, and AI guides.</p>
+                    <h4 className="text-sm font-bold text-stone-800 dark:text-stone-200">Next-Gen Tech</h4>
+                    <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Scalable for VR darshan, donations, and AI guides.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4">
-                <Button href="/about" variant="outline" className="flex items-center gap-2">
-                  <span>Learn More About Us</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </div>
+              <Button href="/about" variant="outline">
+                <span>Learn More About Us</span>
+                <ArrowRight className="h-4 w-4" />
+              </Button>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 5. CTA SECTION */}
-      <section className="bg-gradient-to-r from-neutral-900 via-maroon-950 to-neutral-900 py-16 text-white border-t border-gold-600/20 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,191,36,0.05),transparent_60%)]" />
-        <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">Join the Sacred Experience</h2>
-          <p className="text-stone-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Create an account on Teertha to customize your directory, track your spiritual logs, and receive updates on upcoming live stream sessions.
+      <section className="relative overflow-hidden border-t border-gold-600/20 bg-gradient-to-r from-neutral-900 via-maroon-950 to-neutral-900 py-16 text-center text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,191,36,0.08),transparent_60%)]" />
+        <div className="relative z-10 mx-auto max-w-4xl space-y-6 px-4">
+          <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">Join the Sacred Experience</h2>
+          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-stone-300 sm:text-base">
+            Create an account on Teertha to customize your directory, track spiritual logs, and receive updates on upcoming live stream sessions.
           </p>
-          <div className="pt-2">
-            <Button href="/register" variant="secondary" size="lg" className="w-full sm:w-auto font-bold">
-              Register Now
-            </Button>
-          </div>
+          <Button href="/register" variant="secondary" size="lg" className="w-full font-bold sm:w-auto">Register Now</Button>
         </div>
       </section>
-
     </div>
   );
 }

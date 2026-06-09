@@ -12,7 +12,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold tracking-wide;
+    @apply font-serif font-bold tracking-normal;
   }
 }
 
@@ -29,7 +29,9 @@
 
 /* Elegant gradients & utilities */
 .bg-spiritual-gradient {
-  background: linear-gradient(135deg, #300101 0%, #580505 50%, #7c0a02 100%);
+  background:
+    linear-gradient(135deg, rgba(48, 1, 1, 0.98) 0%, rgba(88, 5, 5, 0.96) 48%, rgba(124, 10, 2, 0.98) 100%),
+    radial-gradient(circle at 20% 20%, rgba(251, 191, 36, 0.16), transparent 32%);
 }
 
 .bg-spiritual-radial {
@@ -48,16 +50,16 @@
 
 /* Glassmorphism utility */
 .glass-panel {
-  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  @apply bg-white/80 backdrop-blur-md border border-white/50 shadow-sm;
 }
 
 .dark .glass-panel {
-  @apply bg-neutral-900/60 backdrop-blur-md border border-white/5 shadow-2xl shadow-black/50;
+  @apply bg-neutral-900/70 backdrop-blur-md border border-white/5 shadow-sm shadow-black/20;
 }
 
 /* Premium Card hover */
 .premium-card-hover {
-  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-maroon-800/20 hover:border-gold-500/50;
+  @apply transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-maroon-800/10 hover:border-gold-500/45;
 }
 
 /* Animation utilities */

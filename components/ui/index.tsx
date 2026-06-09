@@ -20,15 +20,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = React.forwardRef<any, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', href, children, ...props }, ref) => {
     const classes = cn(
-      "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
+      "inline-flex min-h-9 items-center justify-center gap-2 rounded-lg font-semibold leading-none transition-all duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-neutral-950",
       // Sizes
       size === 'sm' && "px-3 py-1.5 text-xs",
       size === 'md' && "px-5 py-2.5 text-sm",
       size === 'lg' && "px-6 py-3 text-base",
       // Variants
-      variant === 'primary' && "bg-gradient-to-r from-maroon-800 to-maroon-950 text-white shadow-md hover:from-maroon-700 hover:to-maroon-900 border border-gold-600/40 hover:border-gold-500/60 shadow-maroon-950/20",
-      variant === 'secondary' && "bg-gradient-to-r from-gold-500 to-gold-600 text-maroon-950 shadow-md hover:from-gold-400 hover:to-gold-500 border border-gold-700/20",
-      variant === 'outline' && "border border-maroon-800/60 text-maroon-800 dark:border-gold-500/40 dark:text-gold-400 bg-transparent hover:bg-maroon-50 dark:hover:bg-maroon-950/20",
+      variant === 'primary' && "bg-gradient-to-r from-maroon-800 to-maroon-950 text-white shadow-sm hover:from-maroon-700 hover:to-maroon-900 border border-gold-600/35 hover:border-gold-500/60 shadow-maroon-950/15",
+      variant === 'secondary' && "bg-gradient-to-r from-gold-500 to-gold-600 text-maroon-950 shadow-sm hover:from-gold-400 hover:to-gold-500 border border-gold-700/20",
+      variant === 'outline' && "border border-maroon-800/45 text-maroon-800 dark:border-gold-500/40 dark:text-gold-400 bg-white/40 dark:bg-neutral-950/20 hover:bg-maroon-50 dark:hover:bg-maroon-950/20",
       variant === 'ghost' && "text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-neutral-800 bg-transparent",
       variant === 'danger' && "bg-red-600 text-white hover:bg-red-700 shadow-md",
       className
@@ -62,7 +62,7 @@ export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
   return (
     <div
       className={cn(
-        "glass-panel rounded-xl border border-stone-200/60 dark:border-neutral-800/80 shadow-md overflow-hidden",
+        "glass-panel rounded-lg border border-stone-200/70 dark:border-neutral-800/80 overflow-hidden",
         className
       )}
       {...props}
@@ -111,7 +111,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           id={id}
           ref={ref}
           className={cn(
-            "flex h-10 w-full rounded-lg border border-stone-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 px-3 py-2 text-sm ring-offset-white placeholder:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:border-transparent transition-all",
+            "flex h-10 w-full rounded-lg border border-stone-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/35 px-3 py-2 text-sm ring-offset-white placeholder:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:border-transparent transition-all",
             error && "border-red-500 focus-visible:ring-red-500",
             className
           )}
@@ -145,7 +145,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={id}
           ref={ref}
           className={cn(
-            "flex min-h-[80px] w-full rounded-lg border border-stone-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 px-3 py-2 text-sm ring-offset-white placeholder:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:border-transparent transition-all",
+            "flex min-h-[80px] w-full rounded-lg border border-stone-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/35 px-3 py-2 text-sm ring-offset-white placeholder:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:border-transparent transition-all",
             error && "border-red-500 focus-visible:ring-red-500",
             className
           )}
@@ -181,7 +181,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             id={id}
             ref={ref}
             className={cn(
-              "flex h-10 w-full rounded-lg border border-stone-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:border-transparent transition-all appearance-none cursor-pointer",
+              "flex h-10 w-full rounded-lg border border-stone-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/35 px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 dark:focus-visible:ring-gold-500 focus-visible:border-transparent transition-all appearance-none cursor-pointer",
               error && "border-red-500 focus-visible:ring-red-500",
               className
             )}
@@ -213,7 +213,7 @@ export function Badge({ className, variant = 'default', children, ...props }: Re
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors font-sans uppercase tracking-wider",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold transition-colors font-sans uppercase tracking-wide leading-none",
         variant === 'default' && "bg-maroon-900/10 text-maroon-800 dark:bg-maroon-950/40 dark:text-maroon-400 border border-maroon-900/10",
         variant === 'gold' && "bg-gold-500/10 text-gold-700 dark:bg-gold-500/10 dark:text-gold-400 border border-gold-500/20",
         variant === 'success' && "bg-green-100 text-green-800 dark:bg-green-950/30 dark:text-green-400 border border-green-200/30",
@@ -247,7 +247,7 @@ export function Dialog({ isOpen, onClose, title, children }: DialogProps) {
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} />
       
       {/* Dialog Content */}
-      <div className="relative w-full max-w-lg rounded-xl border border-stone-200 dark:border-neutral-800 bg-stone-50 dark:bg-neutral-900 p-6 shadow-2xl animate-fade-in z-10">
+      <div className="relative z-10 w-full max-w-lg rounded-lg border border-stone-200 dark:border-neutral-800 bg-stone-50 dark:bg-neutral-900 p-6 shadow-2xl animate-fade-in">
         <div className="flex items-center justify-between pb-4 border-b border-stone-200/60 dark:border-neutral-800/60 mb-4">
           <h2 className="text-xl font-bold font-serif text-stone-900 dark:text-white">{title}</h2>
           <button
