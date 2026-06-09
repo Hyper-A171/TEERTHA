@@ -3,13 +3,30 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-// Load environment variables
+function loadEnvFile() {
+  const envPath = path.join(__dirname, '.env');
+  if (!fs.existsSync(envPath)) return;
+
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  for (const line of envContent.split(/\r?\n/)) {
+    const match = line.match(/^([A-Z0-9_]+)=(.*)$/);
+    if (!match || process.env[match[1]]) continue;
+
+    process.env[match[1]] = match[2].trim().replace(/^"|"$/g, '');
+  }
+}
+
+loadEnvFile();
+
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const REDIRECT_URI = 'https://teertha.vercel.app/oauth-callback';
+const REDIRECT_URI =
+  process.env.GOOGLE_OAUTH_REDIRECT_URI ||
+  (process.env.NEXTAUTH_URL ? `${process.env.NEXTAUTH_URL.replace(/\/$/, '')}/oauth-callback` : 'http://localhost:3000/oauth-callback');
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
   console.error('Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET in environment variables.');
+  console.error('Create an OAuth 2.0 Client ID in Google Cloud, then add both values to .env.');
   process.exit(1);
 }
 
@@ -30,6 +47,8 @@ console.log('\n================================================================'
 console.log('1. Open this URL in your browser to authorize the application:');
 console.log(authUrl);
 console.log('================================================================\n');
+console.log(`Redirect URI used: ${REDIRECT_URI}`);
+console.log('Make sure this exact URI is listed in Google Cloud OAuth client Authorized redirect URIs.\n');
 console.log('2. After authorizing, you will see a page showing your authorization code.');
 console.log('3. Copy the code (or the entire redirected URL) and paste it below, then press Enter:');
 

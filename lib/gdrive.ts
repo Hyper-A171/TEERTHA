@@ -118,12 +118,14 @@ export async function uploadToGoogleDrive(
   mimeType: string
 ): Promise<{ url: string; fileId: string }> {
   let auth: any;
+  let isOAuthAuth = false;
 
   if (CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN) {
     // Setup OAuth2 Auth (acts as the user, using the user's storage quota)
     const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET);
     oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
     auth = oauth2Client;
+    isOAuthAuth = true;
     console.log('Using Google OAuth2 credentials for upload.');
   } else if (CLIENT_EMAIL && PRIVATE_KEY) {
     // Setup JWT Auth (Service Account)
@@ -143,18 +145,38 @@ export async function uploadToGoogleDrive(
   console.log(`Starting Google Drive upload for file: ${fileName} inside folder: ${FOLDER_ID}`);
 
   // Create file in Drive
-  const response = await drive.files.create({
-    requestBody: {
-      name: fileName,
-      parents: [FOLDER_ID],
-    },
-    media: {
-      mimeType: mimeType,
-      body: bufferToStream(fileBuffer),
-    },
-    fields: 'id, webContentLink, webViewLink',
-    supportsAllDrives: true,
-  });
+  let response;
+  try {
+    response = await drive.files.create({
+      requestBody: {
+        name: fileName,
+        parents: [FOLDER_ID],
+      },
+      media: {
+        mimeType: mimeType,
+        body: bufferToStream(fileBuffer),
+      },
+      fields: 'id, webContentLink, webViewLink',
+      supportsAllDrives: true,
+    });
+  } catch (error: any) {
+    const folderNotFound = error?.response?.status === 404 || error?.code === 404;
+    if (!isOAuthAuth || !folderNotFound) {
+      throw error;
+    }
+
+    console.warn(`Google Drive folder ${FOLDER_ID} was not found for the OAuth account. Retrying upload in My Drive root.`);
+    response = await drive.files.create({
+      requestBody: {
+        name: fileName,
+      },
+      media: {
+        mimeType: mimeType,
+        body: bufferToStream(fileBuffer),
+      },
+      fields: 'id, webContentLink, webViewLink',
+    });
+  }
 
   const fileId = response.data.id;
   if (!fileId) {
