@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { uploadImageUrlToGoogleDrive } from '@/lib/gdrive';
 
 // GET all media from all three tables
 export async function GET() {
@@ -73,10 +74,18 @@ export async function POST(req: Request) {
       if (!title) {
         return NextResponse.json({ error: "Image title is required" }, { status: 400 });
       }
+      let driveImage;
+      try {
+        driveImage = await uploadImageUrlToGoogleDrive(url);
+      } catch (driveError: any) {
+        return NextResponse.json({
+          error: `Failed to save image to Google Drive: ${driveError.message || driveError}`
+        }, { status: 500 });
+      }
       createdRecord = await db.templeImage.create({
         data: {
           temple_id: templeIdInt,
-          image_url: url,
+          image_url: driveImage.url,
           title: title
         }
       });

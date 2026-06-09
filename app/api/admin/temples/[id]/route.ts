@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { uploadImageUrlToGoogleDrive } from "@/lib/gdrive";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -35,6 +36,15 @@ export async function PUT(req: Request, { params }: RouteParams) {
       return NextResponse.json({ error: "Temple slug must be unique" }, { status: 409 });
     }
 
+    let driveThumbnail;
+    try {
+      driveThumbnail = await uploadImageUrlToGoogleDrive(thumbnail);
+    } catch (driveError: any) {
+      return NextResponse.json({
+        error: `Failed to save thumbnail to Google Drive: ${driveError.message || driveError}`
+      }, { status: 500 });
+    }
+
     const updated = await db.temple.update({
       where: { id: templeId },
       data: {
@@ -42,7 +52,7 @@ export async function PUT(req: Request, { params }: RouteParams) {
         slug,
         description,
         location,
-        thumbnail,
+        thumbnail: driveThumbnail.url,
         category_id: parseInt(category_id),
         status: status || "Active"
       }

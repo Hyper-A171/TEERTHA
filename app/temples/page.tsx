@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { db } from '@/lib/db';
 import { Card, CardContent, Badge, Button } from '@/components/ui';
@@ -155,12 +154,11 @@ export default async function TemplesPage({ searchParams }: PageProps) {
               <Card key={temple.id} className="premium-card-hover group border border-stone-200/60 dark:border-neutral-800 flex flex-col justify-between h-full bg-white dark:bg-neutral-900">
                 <div>
                   <div className="relative h-52 w-full overflow-hidden bg-neutral-200">
-                    <Image
+                    <img
                       src={temple.thumbnail}
                       alt={temple.name}
-                      fill
-                      sizes="(max-w-768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
                     />
                     <div className="absolute top-3 left-3">
                       <Badge variant="gold">{temple.category.name}</Badge>

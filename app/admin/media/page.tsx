@@ -219,7 +219,8 @@ export default function AdminMediaDashboard() {
         }));
         setUploadState('metadata');
       } else {
-        setErrorMsg('Failed to upload file to local storage');
+        const data = await res.json();
+        setErrorMsg(data.error || 'Failed to upload file to Google Drive');
         setUploadState('idle');
       }
     } catch (err) {
@@ -587,7 +588,7 @@ export default function AdminMediaDashboard() {
             <div className="space-y-4">
               <div className="pb-2 border-b border-stone-100 dark:border-neutral-800/40">
                 <h3 className="text-sm font-serif font-bold text-stone-900 dark:text-white uppercase tracking-wider">Link Remote Media Asset</h3>
-                <p className="text-[10px] text-stone-400 mt-1">Useful when testing on Vercel or linking from cloud storage (Cloudinary, YouTube, etc.)</p>
+                <p className="text-[10px] text-stone-400 mt-1">Image URLs are copied into Google Drive before they are saved.</p>
               </div>
 
               <Input
@@ -672,7 +673,7 @@ export default function AdminMediaDashboard() {
             <div className="pt-4 border-t border-stone-100 dark:border-neutral-800/40">
               <Button type="submit" variant="primary" disabled={saving || !mediaForm.url} className="w-full flex items-center justify-center gap-2">
                 <Upload className="w-4 h-4" />
-                <span>Link Remote Asset</span>
+                <span>Save Asset</span>
               </Button>
             </div>
           </form>

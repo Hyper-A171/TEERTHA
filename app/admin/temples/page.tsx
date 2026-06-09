@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
 import {
   Table,
   TableHeader,
@@ -318,12 +317,14 @@ export default function AdminTemples() {
               <TableRow key={temple.id}>
                 <TableCell>
                   <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-stone-200/60 dark:border-neutral-800 bg-neutral-200">
-                    <Image
+                    <img
                       src={temple.thumbnail}
                       alt={temple.name}
-                      fill
-                      sizes="48px"
-                      className="object-cover"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      }}
                     />
                   </div>
                 </TableCell>

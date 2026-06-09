@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { uploadToGoogleDrive } from '@/lib/gdrive';
-import fs from 'fs';
 import path from 'path';
 
 export async function POST(req: Request) {
@@ -31,53 +30,31 @@ export async function POST(req: Request) {
       .replace(/(^-|-$)+/g, '');
     const finalName = `${Date.now()}-${baseName}${extension}`;
 
-    // Smart Storage Switch
     const isGDriveConfigured = 
       (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY) ||
       (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_REFRESH_TOKEN);
 
-    if (isGDriveConfigured) {
-      console.log('Attempting Google Drive upload...');
-      try {
-        const driveResult = await uploadToGoogleDrive(buffer, finalName, file.type);
-        return NextResponse.json({
-          url: driveResult.url,
-          name: originalName,
-          size: file.size,
-          type: file.type,
-          provider: 'gdrive',
-          fileId: driveResult.fileId
-        });
-      } catch (driveError: any) {
-        console.error('Google Drive Upload Failed:', driveError);
-        return NextResponse.json({
-          error: `Google Drive upload failed: ${driveError.message || driveError}`
-        }, { status: 500 });
-      }
+    if (!isGDriveConfigured) {
+      return NextResponse.json({
+        error: 'Google Drive storage is required. Configure either GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and GOOGLE_REFRESH_TOKEN, or a service account with GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY.'
+      }, { status: 500 });
     }
 
-    // Local Storage Mode (works on local PC, fails gracefully on Vercel)
-    console.log('Using local disk storage...');
+    console.log('Attempting Google Drive upload...');
     try {
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
-
-      const filePath = path.join(uploadDir, finalName);
-      await fs.promises.writeFile(filePath, buffer);
-
+      const driveResult = await uploadToGoogleDrive(buffer, finalName, file.type);
       return NextResponse.json({
-        url: `/uploads/${finalName}`,
+        url: driveResult.url,
         name: originalName,
         size: file.size,
         type: file.type,
-        provider: 'local'
+        provider: 'gdrive',
+        fileId: driveResult.fileId
       });
-    } catch (fsError: any) {
-      console.error('Local disk write failed:', fsError);
+    } catch (driveError: any) {
+      console.error('Google Drive Upload Failed:', driveError);
       return NextResponse.json({
-        error: 'File system is read-only on Vercel. Please configure your GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY environment variables in Vercel settings to enable cloud file uploads.'
+        error: `Google Drive upload failed: ${driveError.message || driveError}. Service accounts cannot upload to My Drive without quota; use a shared drive/folder owned by a user, or configure GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and GOOGLE_REFRESH_TOKEN for OAuth uploads.`
       }, { status: 500 });
     }
 
