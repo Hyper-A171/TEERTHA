@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import {
   Table,
@@ -16,7 +16,7 @@ import {
   Select,
   Badge,
 } from '@/components/ui';
-import { Plus, Edit2, Trash2, Church, AlertCircle } from 'lucide-react';
+import { Plus, Edit2, Trash2, Church, AlertCircle, Upload, Loader2 } from 'lucide-react';
 
 interface Temple {
   id: number;
@@ -61,6 +61,39 @@ export default function AdminTemples() {
   });
 
   const [saving, setSaving] = useState(false);
+
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0]) return;
+    const file = e.target.files[0];
+    const uploadFormData = new FormData();
+    uploadFormData.append('file', file);
+
+    setUploadingImage(true);
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: uploadFormData,
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setFormData((prev) => ({
+          ...prev,
+          thumbnail: data.url,
+        }));
+      } else {
+        const data = await res.json();
+        setErrorMsg(data.error || 'Failed to upload thumbnail image');
+      }
+    } catch (err) {
+      setErrorMsg('Network error uploading thumbnail');
+    } finally {
+      setUploadingImage(false);
+    }
+  };
 
   const fetchData = async () => {
     setLoading(true);
@@ -393,14 +426,55 @@ export default function AdminTemples() {
             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
           />
 
-          <Input
-            label="Thumbnail Image URL"
-            id="create-thumb"
-            required
-            placeholder="e.g. https://images.unsplash.com/..."
-            value={formData.thumbnail}
-            onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-          />
+          <div className="space-y-1.5 font-sans">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-semibold text-stone-700 dark:text-stone-300">Thumbnail Image URL</label>
+              {uploadingImage && (
+                <span className="text-[10px] text-amber-500 flex items-center gap-1 font-semibold animate-pulse">
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                  Uploading to Drive...
+                </span>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <div className="flex-grow">
+                <Input
+                  id="create-thumb"
+                  required
+                  placeholder="e.g. https://images.unsplash.com/..."
+                  value={formData.thumbnail}
+                  onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
+                  className="w-full"
+                />
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingImage}
+                className="h-10 px-3 flex items-center gap-1.5 flex-shrink-0"
+              >
+                {uploadingImage ? (
+                  <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
+                ) : (
+                  <Upload className="w-4 h-4 text-stone-500" />
+                )}
+                <span>Upload</span>
+              </Button>
+            </div>
+            {formData.thumbnail && (
+              <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-stone-200/60 dark:border-neutral-800 bg-stone-50 mt-1 shadow-sm">
+                <img
+                  src={formData.thumbnail}
+                  alt="Thumbnail Preview"
+                  className="object-cover w-full h-full"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+              </div>
+            )}
+          </div>
 
           <Textarea
             label="Historical & Spiritual Description"
@@ -485,14 +559,55 @@ export default function AdminTemples() {
             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
           />
 
-          <Input
-            label="Thumbnail Image URL"
-            id="edit-thumb"
-            required
-            placeholder="e.g. https://images.unsplash.com/..."
-            value={formData.thumbnail}
-            onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-          />
+          <div className="space-y-1.5 font-sans">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-semibold text-stone-700 dark:text-stone-300">Thumbnail Image URL</label>
+              {uploadingImage && (
+                <span className="text-[10px] text-amber-500 flex items-center gap-1 font-semibold animate-pulse">
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                  Uploading to Drive...
+                </span>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <div className="flex-grow">
+                <Input
+                  id="edit-thumb"
+                  required
+                  placeholder="e.g. https://images.unsplash.com/..."
+                  value={formData.thumbnail}
+                  onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
+                  className="w-full"
+                />
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingImage}
+                className="h-10 px-3 flex items-center gap-1.5 flex-shrink-0"
+              >
+                {uploadingImage ? (
+                  <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
+                ) : (
+                  <Upload className="w-4 h-4 text-stone-500" />
+                )}
+                <span>Upload</span>
+              </Button>
+            </div>
+            {formData.thumbnail && (
+              <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-stone-200/60 dark:border-neutral-800 bg-stone-50 mt-1 shadow-sm">
+                <img
+                  src={formData.thumbnail}
+                  alt="Thumbnail Preview"
+                  className="object-cover w-full h-full"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+              </div>
+            )}
+          </div>
 
           <Textarea
             label="Historical & Spiritual Description"
@@ -520,6 +635,13 @@ export default function AdminTemples() {
         </form>
       </Dialog>
 
+      <input
+        type="file"
+        ref={fileInputRef}
+        accept="image/*"
+        className="hidden"
+        onChange={handleImageUpload}
+      />
     </div>
   );
 }
