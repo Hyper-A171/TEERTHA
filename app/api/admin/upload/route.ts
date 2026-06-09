@@ -36,8 +36,7 @@ export async function POST(req: Request) {
     const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
     if (serviceAccountEmail && serviceAccountKey) {
-      // 1. Production Mode: Upload to Google Drive folder
-      console.log('Uploading to Google Drive storage...');
+      console.log('Attempting Google Drive upload...');
       try {
         const driveResult = await uploadToGoogleDrive(buffer, finalName, file.type);
         return NextResponse.json({
@@ -49,31 +48,42 @@ export async function POST(req: Request) {
           fileId: driveResult.fileId
         });
       } catch (driveError: any) {
-        console.error('Google Drive Upload Failed, falling back to local storage...', driveError);
-        // Continue to local save fallback
+        console.error('Google Drive Upload Failed:', driveError);
+        return NextResponse.json({
+          error: `Google Drive upload failed: ${driveError.message || driveError}`
+        }, { status: 500 });
       }
     }
 
-    // 2. Local Fallback Mode: Save to public/uploads/
-    console.log('Using local disk storage upload...');
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+    // Local Storage Mode (works on local PC, fails gracefully on Vercel)
+    console.log('Using local disk storage...');
+    try {
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+
+      const filePath = path.join(uploadDir, finalName);
+      await fs.promises.writeFile(filePath, buffer);
+
+      return NextResponse.json({
+        url: `/uploads/${finalName}`,
+        name: originalName,
+        size: file.size,
+        type: file.type,
+        provider: 'local'
+      });
+    } catch (fsError: any) {
+      console.error('Local disk write failed:', fsError);
+      return NextResponse.json({
+        error: 'File system is read-only on Vercel. Please configure your GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY environment variables in Vercel settings to enable cloud file uploads.'
+      }, { status: 500 });
     }
-
-    const filePath = path.join(uploadDir, finalName);
-    await fs.promises.writeFile(filePath, buffer);
-
-    return NextResponse.json({
-      url: `/uploads/${finalName}`,
-      name: originalName,
-      size: file.size,
-      type: file.type,
-      provider: 'local'
-    });
 
   } catch (error: any) {
     console.error('File upload API crash:', error);
-    return NextResponse.json({ error: 'Internal server error during upload' }, { status: 500 });
+    return NextResponse.json({
+      error: `Upload handler crash: ${error.message || error}`
+    }, { status: 500 });
   }
 }
