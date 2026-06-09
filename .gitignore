@@ -29,3 +29,7 @@ pnpm-debug.log*
 .DS_Store
 *.local
 Thumds.db
+
+# Secrets and credentials
+
+teertha-498912-8479a05e95c0.json
