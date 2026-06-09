@@ -16,6 +16,7 @@ import {
   LogOut,
   ChevronRight,
   Home,
+  Film,
 } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -27,6 +28,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
     { label: 'Temples', href: '/admin/temples', icon: Church },
     { label: 'Categories', href: '/admin/categories', icon: FolderTree },
+    { label: 'Media Library', href: '/admin/media', icon: Film },
+    { label: 'Media Categories', href: '/admin/media/categories', icon: FolderTree },
     { label: 'Users', href: '/admin/users', icon: Users },
     { label: 'Settings', href: '/admin/settings', icon: Settings },
   ];

@@ -41,18 +41,66 @@ model TempleCategory {
 }
 
 model Temple {
-  id          Int            @id @default(autoincrement())
-  category_id Int
-  category    TempleCategory @relation(fields: [category_id], references: [id], onDelete: Cascade)
-  name        String
-  slug        String         @unique
-  description String         @db.Text
-  location    String
-  thumbnail   String
-  status      String         @default("Active")
-  created_at  DateTime       @default(now())
+  id           Int                @id @default(autoincrement())
+  category_id  Int
+  category     TempleCategory     @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  name         String
+  slug         String             @unique
+  description  String             @db.Text
+  location     String
+  thumbnail    String
+  status       String             @default("Published") // "Draft", "Published", "Archived"
+  images       TempleImage[]
+  videos       TempleVideo[]
+  audio_guides TempleAudioGuide[]
+  created_at   DateTime           @default(now())
 
   @@map("temples")
+}
+
+model TempleImage {
+  id         Int      @id @default(autoincrement())
+  temple_id  Int
+  temple     Temple   @relation(fields: [temple_id], references: [id], onDelete: Cascade)
+  image_url  String   @db.Text
+  title      String
+  created_at DateTime @default(now())
+
+  @@map("temple_images")
+}
+
+model TempleVideo {
+  id          Int            @id @default(autoincrement())
+  temple_id   Int
+  temple      Temple         @relation(fields: [temple_id], references: [id], onDelete: Cascade)
+  video_url   String         @db.Text
+  video_type  String         // "Standard", "360_VR"
+  duration    Int            // in seconds
+  category_id Int?
+  category    MediaCategory? @relation(fields: [category_id], references: [id], onDelete: SetNull)
+  created_at  DateTime       @default(now())
+
+  @@map("temple_videos")
+}
+
+model TempleAudioGuide {
+  id         Int      @id @default(autoincrement())
+  temple_id  Int
+  temple     Temple   @relation(fields: [temple_id], references: [id], onDelete: Cascade)
+  language   String   // "Hindi", "English", "Marathi", etc.
+  audio_url  String   @db.Text
+  created_at DateTime @default(now())
+
+  @@map("temple_audio_guides")
+}
+
+model MediaCategory {
+  id     Int           @id @default(autoincrement())
+  name   String
+  slug   String        @unique
+  videos TempleVideo[]
+
+  @@map("media_categories")
 }
 
 model ActivityLog {
