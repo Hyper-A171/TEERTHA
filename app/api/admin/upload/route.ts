@@ -32,10 +32,11 @@ export async function POST(req: Request) {
     const finalName = `${Date.now()}-${baseName}${extension}`;
 
     // Smart Storage Switch
-    const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+    const isGDriveConfigured = 
+      (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY) ||
+      (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_REFRESH_TOKEN);
 
-    if (serviceAccountEmail && serviceAccountKey) {
+    if (isGDriveConfigured) {
       console.log('Attempting Google Drive upload...');
       try {
         const driveResult = await uploadToGoogleDrive(buffer, finalName, file.type);

@@ -6,6 +6,10 @@ const CLIENT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const PRIVATE_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 const FOLDER_ID = process.env.GOOGLE_DRIVE_FOLDER_ID || '1Q7m3OvGfYzkdvVfBmjUEQb4mdPYw4Lmq';
 
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
+
 // Helper to convert buffer to stream
 function bufferToStream(buffer: Buffer) {
   const stream = new Readable();
@@ -19,17 +23,26 @@ export async function uploadToGoogleDrive(
   fileName: string,
   mimeType: string
 ): Promise<{ url: string; fileId: string }> {
-  if (!CLIENT_EMAIL || !PRIVATE_KEY) {
-    throw new Error('Google Service Account credentials (EMAIL and PRIVATE_KEY) are missing in environment variables.');
-  }
+  let auth: any;
 
-  // Setup JWT Auth
-  const auth = new google.auth.JWT(
-    CLIENT_EMAIL,
-    undefined,
-    PRIVATE_KEY.replace(/\\n/g, '\n'), // Handle escaped newlines from environment strings
-    ['https://www.googleapis.com/auth/drive']
-  );
+  if (CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN) {
+    // Setup OAuth2 Auth (acts as the user, using the user's storage quota)
+    const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET);
+    oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+    auth = oauth2Client;
+    console.log('Using Google OAuth2 credentials for upload.');
+  } else if (CLIENT_EMAIL && PRIVATE_KEY) {
+    // Setup JWT Auth (Service Account)
+    auth = new google.auth.JWT(
+      CLIENT_EMAIL,
+      undefined,
+      PRIVATE_KEY.replace(/\\n/g, '\n'), // Handle escaped newlines from environment strings
+      ['https://www.googleapis.com/auth/drive']
+    );
+    console.log('Using Google Service Account credentials for upload.');
+  } else {
+    throw new Error('Google Drive credentials (either OAuth2 ID/SECRET/REFRESH or Service Account EMAIL/PRIVATE_KEY) are missing in environment variables.');
+  }
 
   const drive = google.drive({ version: 'v3', auth });
 
@@ -46,6 +59,7 @@ export async function uploadToGoogleDrive(
       body: bufferToStream(fileBuffer),
     },
     fields: 'id, webContentLink, webViewLink',
+    supportsAllDrives: true,
   });
 
   const fileId = response.data.id;
@@ -62,6 +76,7 @@ export async function uploadToGoogleDrive(
       role: 'reader',
       type: 'anyone',
     },
+    supportsAllDrives: true,
   });
 
   // Generate direct high-speed streaming link
