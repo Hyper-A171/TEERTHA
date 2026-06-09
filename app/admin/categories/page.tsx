@@ -13,8 +13,10 @@ import {
   Input,
   Textarea,
   Badge,
+  TableSkeleton,
 } from '@/components/ui';
 import { Plus, Edit2, Trash2, FolderTree, AlertCircle } from 'lucide-react';
+import { getCachedData, setCachedData } from '@/lib/clientCache';
 
 interface Category {
   id: number;
@@ -43,12 +45,19 @@ export default function AdminCategories() {
   const [saving, setSaving] = useState(false);
 
   const fetchCategories = async () => {
-    setLoading(true);
+    const cachedCats = getCachedData('categories');
+    if (cachedCats) {
+      setCategories(cachedCats);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
     try {
       const res = await fetch('/api/admin/categories');
       if (res.ok) {
         const data = await res.json();
         setCategories(data);
+        setCachedData('categories', data);
       } else {
         setErrorMsg('Failed to load circuits catalog');
       }
@@ -203,10 +212,7 @@ export default function AdminCategories() {
 
       {/* Main Table */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 space-y-3">
-          <div className="w-8 h-8 border-2 border-t-transparent border-maroon-800 dark:border-gold-500 rounded-full animate-spin" />
-          <p className="text-xs text-stone-500">Loading catalog...</p>
-        </div>
+        <TableSkeleton rows={5} cols={5} />
       ) : categories.length > 0 ? (
         <Table>
           <TableHeader>

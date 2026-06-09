@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import AuthProvider from "@/components/AuthProvider";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ClientLayout from "@/components/ClientLayout";
 import "./globals.css";
 
 const sansFont = Inter({
@@ -32,11 +31,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${sansFont.variable} ${serifFont.variable} font-sans min-h-screen flex flex-col`}>
         <AuthProvider>
-          <Navbar />
-          <main className="flex-grow">
+          <ClientLayout>
             {children}
-          </main>
-          <Footer />
+          </ClientLayout>
         </AuthProvider>
       </body>
     </html>

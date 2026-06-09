@@ -14,8 +14,10 @@ import {
   Textarea,
   Select,
   Badge,
+  TableSkeleton,
 } from '@/components/ui';
 import { Plus, Edit2, Trash2, Church, AlertCircle, Upload, Loader2 } from 'lucide-react';
+import { getCachedData, setCachedData } from '@/lib/clientCache';
 
 interface Temple {
   id: number;
@@ -95,16 +97,32 @@ export default function AdminTemples() {
   };
 
   const fetchData = async () => {
-    setLoading(true);
+    const cachedTemples = getCachedData('temples');
+    const cachedCats = getCachedData('categories');
+
+    if (cachedTemples && cachedCats) {
+      setTemples(cachedTemples);
+      setCategories(cachedCats);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+
     try {
-      const templesRes = await fetch('/api/admin/temples');
-      const catsRes = await fetch('/api/admin/categories');
+      const [templesRes, catsRes] = await Promise.all([
+        fetch('/api/admin/temples'),
+        fetch('/api/admin/categories')
+      ]);
 
       if (templesRes.ok && catsRes.ok) {
-        const templesData = await templesRes.json();
-        const catsData = await catsRes.json();
+        const [templesData, catsData] = await Promise.all([
+          templesRes.json(),
+          catsRes.json()
+        ]);
         setTemples(templesData);
         setCategories(catsData);
+        setCachedData('temples', templesData);
+        setCachedData('categories', catsData);
       } else {
         setErrorMsg('Failed to load database directories');
       }
@@ -296,10 +314,7 @@ export default function AdminTemples() {
 
       {/* Main Table */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 space-y-3">
-          <div className="w-8 h-8 border-2 border-t-transparent border-maroon-800 dark:border-gold-500 rounded-full animate-spin" />
-          <p className="text-xs text-stone-500">Loading temple registers...</p>
-        </div>
+        <TableSkeleton rows={5} cols={6} />
       ) : temples.length > 0 ? (
         <Table>
           <TableHeader>

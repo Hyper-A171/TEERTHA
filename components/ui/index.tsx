@@ -313,3 +313,37 @@ export function TableHead({ className, ...props }: React.ThHTMLAttributes<HTMLTa
 export function TableCell({ className, ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return <td className={cn("p-4 align-middle font-sans text-stone-700 dark:text-stone-300", className)} {...props} />;
 }
+
+// ==========================================
+// SKELETON LOADER COMPONENTS
+// ==========================================
+export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn("animate-pulse rounded bg-stone-200/80 dark:bg-neutral-800/80", className)}
+      {...props}
+    />
+  );
+}
+
+export function TableSkeleton({ rows = 5, cols = 5 }: { rows?: number; cols?: number }) {
+  return (
+    <div className="w-full space-y-4">
+      {/* Header Skeleton */}
+      <div className="flex items-center space-x-4 py-2 border-b border-stone-200/60 dark:border-neutral-800/60">
+        {Array.from({ length: cols }).map((_, i) => (
+          <Skeleton key={i} className="h-4 flex-grow max-w-[150px]" />
+        ))}
+      </div>
+      {/* Body Rows Skeleton */}
+      {Array.from({ length: rows }).map((_, r) => (
+        <div key={r} className="flex items-center space-x-4 py-4 border-b border-stone-100 dark:border-neutral-800/30">
+          {Array.from({ length: cols }).map((_, c) => (
+            <Skeleton key={c} className="h-6 flex-grow max-w-[200px]" />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+

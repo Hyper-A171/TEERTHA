@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
+import { Card, CardHeader, CardTitle, CardContent, Skeleton } from '@/components/ui';
 import { Users, Church, FolderTree, History, RefreshCw, Activity, Calendar } from 'lucide-react';
+import { getCachedData, setCachedData } from '@/lib/clientCache';
 
 interface StatsData {
   totalUsers: number;
@@ -25,12 +26,19 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   const fetchStats = async () => {
-    setLoading(true);
+    const cachedStats = getCachedData('adminStats');
+    if (cachedStats) {
+      setStats(cachedStats);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
     try {
       const res = await fetch('/api/admin/stats');
       if (res.ok) {
         const data = await res.json();
         setStats(data);
+        setCachedData('adminStats', data);
       }
     } catch (error) {
       console.error('Failed to fetch dashboard stats', error);
@@ -56,14 +64,7 @@ export default function AdminDashboard() {
 
   const maxVal = Math.max(...chartData.map((d) => d.value));
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4">
-        <div className="w-10 h-10 border-2 border-t-transparent border-maroon-800 dark:border-gold-500 rounded-full animate-spin" />
-        <p className="text-xs text-stone-500 dark:text-stone-400">Loading admin statistics...</p>
-      </div>
-    );
-  }
+  // Loading indicator for very first visit is replaced with modular skeletons below
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -94,9 +95,13 @@ export default function AdminDashboard() {
         {/* Total Users */}
         <Card className="border border-stone-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-900">
           <CardContent className="p-6 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-1 flex-1">
               <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider">Total Users</p>
-              <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalUsers || 0}</h3>
+              {loading && !stats ? (
+                <Skeleton className="h-8 w-16 mt-1" />
+              ) : (
+                <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalUsers || 0}</h3>
+              )}
             </div>
             <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center">
               <Users className="w-6 h-6" />
@@ -107,9 +112,13 @@ export default function AdminDashboard() {
         {/* Total Temples */}
         <Card className="border border-stone-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-900">
           <CardContent className="p-6 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-1 flex-1">
               <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider">Total Shrines</p>
-              <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalTemples || 0}</h3>
+              {loading && !stats ? (
+                <Skeleton className="h-8 w-16 mt-1" />
+              ) : (
+                <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalTemples || 0}</h3>
+              )}
             </div>
             <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
               <Church className="w-6 h-6" />
@@ -120,9 +129,13 @@ export default function AdminDashboard() {
         {/* Total Categories */}
         <Card className="border border-stone-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-900">
           <CardContent className="p-6 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-1 flex-1">
               <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider">Circuits</p>
-              <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalCategories || 0}</h3>
+              {loading && !stats ? (
+                <Skeleton className="h-8 w-16 mt-1" />
+              ) : (
+                <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalCategories || 0}</h3>
+              )}
             </div>
             <div className="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center">
               <FolderTree className="w-6 h-6" />
@@ -133,9 +146,13 @@ export default function AdminDashboard() {
         {/* Total Logs */}
         <Card className="border border-stone-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-900">
           <CardContent className="p-6 flex items-center justify-between">
-            <div className="space-y-1">
+            <div className="space-y-1 flex-1">
               <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider">System Logs</p>
-              <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalLogs || 0}</h3>
+              {loading && !stats ? (
+                <Skeleton className="h-8 w-16 mt-1" />
+              ) : (
+                <h3 className="text-3xl font-serif font-bold text-stone-900 dark:text-white">{stats?.totalLogs || 0}</h3>
+              )}
             </div>
             <div className="w-12 h-12 rounded-xl bg-red-500/10 text-red-600 flex items-center justify-center">
               <History className="w-6 h-6" />
@@ -161,26 +178,34 @@ export default function AdminDashboard() {
             
             {/* Custom SVG Chart */}
             <div className="w-full h-64 flex flex-col justify-end pt-4">
-              <div className="flex-grow flex items-end justify-between px-4 h-48 border-b border-stone-200 dark:border-neutral-800">
-                {chartData.map((d) => {
-                  const percentHeight = (d.value / maxVal) * 100;
-                  return (
-                    <div key={d.label} className="flex flex-col items-center group w-1/12">
-                      
-                      {/* Tooltip */}
-                      <span className="opacity-0 group-hover:opacity-100 bg-neutral-950 text-white text-[10px] py-1 px-2 rounded absolute mb-20 transition-opacity z-10 font-sans shadow-lg border border-neutral-800">
-                        {d.value} hits
-                      </span>
+              {loading && !stats ? (
+                <div className="flex-grow flex items-end justify-between px-4 h-48 border-b border-stone-200 dark:border-neutral-800 animate-pulse">
+                  {Array.from({ length: 7 }).map((_, i) => (
+                    <div key={i} className="w-1/12 bg-stone-200 dark:bg-neutral-800 rounded-t-lg" style={{ height: `${20 + i * 10}%` }} />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex-grow flex items-end justify-between px-4 h-48 border-b border-stone-200 dark:border-neutral-800">
+                  {chartData.map((d) => {
+                    const percentHeight = (d.value / maxVal) * 100;
+                    return (
+                      <div key={d.label} className="flex flex-col items-center group w-1/12">
+                        
+                        {/* Tooltip */}
+                        <span className="opacity-0 group-hover:opacity-100 bg-neutral-950 text-white text-[10px] py-1 px-2 rounded absolute mb-20 transition-opacity z-10 font-sans shadow-lg border border-neutral-800">
+                          {d.value} hits
+                        </span>
 
-                      {/* Bar */}
-                      <div
-                        style={{ height: `${percentHeight}%` }}
-                        className="w-full bg-gradient-to-t from-maroon-950 via-maroon-800 to-amber-500 rounded-t-lg transition-all duration-500 hover:brightness-110 shadow-md shadow-maroon-900/10"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+                        {/* Bar */}
+                        <div
+                          style={{ height: `${percentHeight}%` }}
+                          className="w-full bg-gradient-to-t from-maroon-950 via-maroon-800 to-amber-500 rounded-t-lg transition-all duration-500 hover:brightness-110 shadow-md shadow-maroon-900/10"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Labels */}
               <div className="flex justify-between px-4 pt-3 text-xs font-semibold text-stone-500">
@@ -205,7 +230,17 @@ export default function AdminDashboard() {
           <CardContent className="p-6">
             
             <div className="space-y-4">
-              {stats?.recentLogs && stats.recentLogs.length > 0 ? (
+              {loading && !stats ? (
+                Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="border-b border-stone-100 dark:border-neutral-800/40 pb-3 last:border-0 last:pb-0 space-y-2 animate-pulse">
+                    <Skeleton className="h-4 w-5/6 rounded" />
+                    <div className="flex justify-between">
+                      <Skeleton className="h-3 w-1/3 rounded" />
+                      <Skeleton className="h-3 w-1/4 rounded" />
+                    </div>
+                  </div>
+                ))
+              ) : stats?.recentLogs && stats.recentLogs.length > 0 ? (
                 stats.recentLogs.map((log) => (
                   <div key={log.id} className="text-xs border-b border-stone-100 dark:border-neutral-800/40 pb-3 last:border-0 last:pb-0">
                     <p className="font-semibold text-stone-800 dark:text-stone-200 leading-normal">

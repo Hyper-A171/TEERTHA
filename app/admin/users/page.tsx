@@ -12,8 +12,10 @@ import {
   Button,
   Select,
   Badge,
+  TableSkeleton,
 } from '@/components/ui';
 import { Users, ShieldAlert, AlertCircle } from 'lucide-react';
+import { getCachedData, setCachedData } from '@/lib/clientCache';
 
 interface UserItem {
   id: number;
@@ -37,12 +39,19 @@ export default function AdminUsers() {
   const isSuperAdmin = currentUserRole === 'Super Admin';
 
   const fetchUsers = async () => {
-    setLoading(true);
+    const cachedUsers = getCachedData('users');
+    if (cachedUsers) {
+      setUsers(cachedUsers);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
     try {
       const res = await fetch('/api/admin/users');
       if (res.ok) {
         const data = await res.json();
         setUsers(data);
+        setCachedData('users', data);
       } else {
         setErrorMsg('Failed to load users directory');
       }
@@ -124,10 +133,7 @@ export default function AdminUsers() {
 
       {/* Main Table */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 space-y-3">
-          <div className="w-8 h-8 border-2 border-t-transparent border-maroon-800 dark:border-gold-500 rounded-full animate-spin" />
-          <p className="text-xs text-stone-500">Retrieving user accounts...</p>
-        </div>
+        <TableSkeleton rows={5} cols={5} />
       ) : users.length > 0 ? (
         <Table>
           <TableHeader>
