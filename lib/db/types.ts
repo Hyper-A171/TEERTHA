@@ -35,34 +35,33 @@ export interface Temple {
   category?: TempleCategory;
 }
 
-export interface TempleImage {
+export interface MediaFolder {
   id: number;
-  temple_id: number;
-  image_url: string;
-  title: string;
-  created_at: Date;
-  temple?: Temple;
+  folder_name: string;
+  parent_folder: number | null;
 }
 
-export interface TempleVideo {
+export interface Media {
   id: number;
+  title: string;
+  file_name: string;
+  file_url: string;
+  file_id: string | null;
+  mime_type: string;
+  file_size: number;
   temple_id: number;
-  video_url: string;
-  video_type: string;
-  duration: number;
   category_id: number | null;
+  folder_id: number | null;
+  uploaded_by: number | null;
+  video_type: string | null;
+  duration: number | null;
+  language: string | null;
   created_at: Date;
+  updated_at: Date;
+  deleted_at: Date | null;
   temple?: Temple;
   category?: MediaCategory;
-}
-
-export interface TempleAudioGuide {
-  id: number;
-  temple_id: number;
-  language: string;
-  audio_url: string;
-  created_at: Date;
-  temple?: Temple;
+  folder?: MediaFolder;
 }
 
 export interface MediaCategory {
