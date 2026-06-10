@@ -70,6 +70,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link
                 key={link.label}
                 href={link.href}
+                prefetch={false}
                 className={`flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
                   isActive
                     ? 'bg-gradient-to-r from-gold-500 to-amber-600 text-neutral-950 font-bold'
@@ -135,7 +136,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
           <div className="flex items-center gap-4">
             {/* Home Portal Button */}
-            <Link href="/" className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-500 hover:text-maroon-800 dark:hover:text-gold-400 transition-colors">
+            <Link href="/" prefetch={false} className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-500 hover:text-maroon-800 dark:hover:text-gold-400 transition-colors">
               <Home className="w-4 h-4" />
               <span className="hidden sm:inline">Portal Home</span>
             </Link>
