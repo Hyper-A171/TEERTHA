@@ -11,18 +11,23 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const users = await db.user.findMany({
-      include: { role: true },
-      orderBy: { name: "asc" }
-    });
+    const [users] = await db.execute<any[]>(
+      `SELECT u.id, u.name, u.email, u.role_id, u.created_at, r.name as role_name 
+       FROM users u 
+       JOIN roles r ON u.role_id = r.id 
+       ORDER BY u.name ASC`
+    );
 
-    // Strip passwords before returning
+    // Strip passwords before returning (though we didn't SELECT them above anyway)
     const safeUsers = users.map(u => ({
       id: u.id,
       name: u.name,
       email: u.email,
       role_id: u.role_id,
-      role: u.role,
+      role: {
+        id: u.role_id,
+        name: u.role_name
+      },
       created_at: u.created_at
     }));
 

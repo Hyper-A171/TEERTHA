@@ -11,9 +11,7 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const categories = await db.templeCategory.findMany({
-      orderBy: { name: "asc" }
-    });
+    const [categories] = await db.execute<any[]>('SELECT * FROM temple_categories ORDER BY name ASC');
     return NextResponse.json(categories);
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch categories" }, { status: 500 });
@@ -35,27 +33,27 @@ export async function POST(req: Request) {
     }
 
     // Check slug uniqueness
-    const existing = await db.templeCategory.findUnique({
-      where: { slug }
-    });
+    const [existing] = await db.execute<any[]>('SELECT id FROM temple_categories WHERE slug = ?', [slug]);
 
-    if (existing) {
+    if (existing.length > 0) {
       return NextResponse.json({ error: "Category slug must be unique" }, { status: 409 });
     }
 
-    const newCategory = await db.templeCategory.create({
-      data: { name, slug, description }
-    });
+    const [result] = await db.execute<any>(
+      'INSERT INTO temple_categories (name, slug, description, created_at) VALUES (?, ?, ?, NOW())',
+      [name, slug, description]
+    );
 
     // Log action
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Created new category: ${name}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Created new category: ${name}`]
+    );
 
-    return NextResponse.json(newCategory, { status: 201 });
+    return NextResponse.json({
+      id: result.insertId,
+      name, slug, description
+    }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Failed to create category" }, { status: 500 });
   }

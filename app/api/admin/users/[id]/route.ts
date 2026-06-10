@@ -29,42 +29,40 @@ export async function PUT(req: Request, { params }: RouteParams) {
       return NextResponse.json({ error: "Role ID is required" }, { status: 400 });
     }
 
-    const targetUser = await db.user.findUnique({
-      where: { id: targetUserId },
-      include: { role: true }
-    });
+    const [targetUserRows] = await db.execute<any[]>(
+      'SELECT u.id, u.name, u.email, r.name as role_name FROM users u JOIN roles r ON u.role_id = r.id WHERE u.id = ?',
+      [targetUserId]
+    );
 
-    if (!targetUser) {
+    if (targetUserRows.length === 0) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+    const targetUser = targetUserRows[0];
 
-    const roleToAssign = await db.role.findUnique({
-      where: { id: parseInt(role_id) }
-    });
+    const parsedRoleId = parseInt(role_id);
+    const [roleRows] = await db.execute<any[]>('SELECT id, name FROM roles WHERE id = ?', [parsedRoleId]);
 
-    if (!roleToAssign) {
+    if (roleRows.length === 0) {
       return NextResponse.json({ error: "Target role not found" }, { status: 404 });
     }
+    const roleToAssign = roleRows[0];
 
-    const updatedUser = await db.user.update({
-      where: { id: targetUserId },
-      data: { role_id: parseInt(role_id) },
-      include: { role: true }
-    });
+    await db.execute('UPDATE users SET role_id = ? WHERE id = ?', [parsedRoleId, targetUserId]);
 
     // Log action
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Changed user ${targetUser.name}'s role from ${targetUser.role.name} to ${roleToAssign.name}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Changed user ${targetUser.name}'s role from ${targetUser.role_name} to ${roleToAssign.name}`]
+    );
 
     return NextResponse.json({
-      id: updatedUser.id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      role: updatedUser.role
+      id: targetUser.id,
+      name: targetUser.name,
+      email: targetUser.email,
+      role: {
+        id: roleToAssign.id,
+        name: roleToAssign.name
+      }
     });
   } catch (error) {
     console.error("User update error:", error);

@@ -14,11 +14,12 @@ export async function POST(req: Request) {
     }
 
     // Check if user already exists
-    const existingUser = await db.user.findUnique({
-      where: { email },
-    });
+    const [existingRows] = await db.execute<any[]>(
+      'SELECT id FROM users WHERE email = ?',
+      [email]
+    );
 
-    if (existingUser) {
+    if (existingRows.length > 0) {
       return NextResponse.json(
         { error: "A user with this email address already exists" },
         { status: 409 }
@@ -29,25 +30,20 @@ export async function POST(req: Request) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user and assign the default "User" role (Role ID: 3)
-    const user = await db.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        role_id: 3, // Role ID for "User"
-      },
-    });
+    const [result] = await db.execute<any>(
+      'INSERT INTO users (name, email, password, role_id, created_at) VALUES (?, ?, ?, ?, NOW())',
+      [name, email, hashedPassword, 3]
+    );
+    const userId = result.insertId;
 
     // Log the activity
-    await db.activityLog.create({
-      data: {
-        user_id: user.id,
-        action: `User registered account under the email: ${email}`,
-      },
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [userId, `User registered account under the email: ${email}`]
+    );
 
     return NextResponse.json(
-      { message: "User registered successfully", userId: user.id },
+      { message: "User registered successfully", userId },
       { status: 201 }
     );
   } catch (error: any) {

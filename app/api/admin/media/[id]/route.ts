@@ -26,26 +26,19 @@ export async function PUT(req: Request, { params }: RouteParams) {
 
     if (type === 'image') {
       const { title } = body;
-      updatedRecord = await db.templeImage.update({
-        where: { id: mediaId },
-        data: { title }
-      });
+      await db.execute('UPDATE temple_images SET title = ? WHERE id = ?', [title, mediaId]);
+      updatedRecord = { id: mediaId, title };
     } else if (type === 'video') {
       const { video_type, duration, category_id } = body;
-      updatedRecord = await db.templeVideo.update({
-        where: { id: mediaId },
-        data: {
-          video_type,
-          duration: parseInt(duration || 0),
-          category_id: category_id ? parseInt(category_id) : null
-        }
-      });
+      await db.execute(
+        'UPDATE temple_videos SET video_type = ?, duration = ?, category_id = ? WHERE id = ?',
+        [video_type, parseInt(duration || 0), category_id ? parseInt(category_id) : null, mediaId]
+      );
+      updatedRecord = { id: mediaId, video_type, duration: parseInt(duration || 0), category_id: category_id ? parseInt(category_id) : null };
     } else if (type === 'audio') {
       const { language } = body;
-      updatedRecord = await db.templeAudioGuide.update({
-        where: { id: mediaId },
-        data: { language }
-      });
+      await db.execute('UPDATE temple_audio_guides SET language = ? WHERE id = ?', [language, mediaId]);
+      updatedRecord = { id: mediaId, language };
     } else {
       return NextResponse.json({ error: "Invalid media classification type" }, { status: 400 });
     }
@@ -72,22 +65,20 @@ export async function DELETE(req: Request, { params }: RouteParams) {
     const mediaId = parseInt(resolvedParams.id);
 
     if (type === 'image') {
-      await db.templeImage.delete({ where: { id: mediaId } });
+      await db.execute('DELETE FROM temple_images WHERE id = ?', [mediaId]);
     } else if (type === 'video') {
-      await db.templeVideo.delete({ where: { id: mediaId } });
+      await db.execute('DELETE FROM temple_videos WHERE id = ?', [mediaId]);
     } else if (type === 'audio') {
-      await db.templeAudioGuide.delete({ where: { id: mediaId } });
+      await db.execute('DELETE FROM temple_audio_guides WHERE id = ?', [mediaId]);
     } else {
       return NextResponse.json({ error: "Invalid media type query param" }, { status: 400 });
     }
 
     // Log deletion
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Unlinked and deleted ${type} asset ID: ${mediaId}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Unlinked and deleted ${type} asset ID: ${mediaId}`]
+    );
 
     return NextResponse.json({ message: "Media deleted successfully" });
   } catch (error) {

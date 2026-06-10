@@ -24,23 +24,15 @@ export async function PUT(req: Request, { params }: RouteParams) {
     }
 
     // Check slug duplication
-    const duplicate = await db.mediaCategory.findFirst({
-      where: {
-        slug,
-        NOT: { id: catId }
-      }
-    });
+    const [duplicate] = await db.execute<any[]>('SELECT id FROM media_categories WHERE slug = ? AND id != ?', [slug, catId]);
 
-    if (duplicate) {
+    if (duplicate.length > 0) {
       return NextResponse.json({ error: "Category slug must be unique" }, { status: 409 });
     }
 
-    const updated = await db.mediaCategory.update({
-      where: { id: catId },
-      data: { name, slug }
-    });
+    await db.execute('UPDATE media_categories SET name = ?, slug = ? WHERE id = ?', [name, slug, catId]);
 
-    return NextResponse.json(updated);
+    return NextResponse.json({ id: catId, name, slug });
   } catch (error) {
     return NextResponse.json({ error: "Failed to update media category" }, { status: 500 });
   }
@@ -57,17 +49,13 @@ export async function DELETE(req: Request, { params }: RouteParams) {
     const resolvedParams = await params;
     const catId = parseInt(resolvedParams.id);
 
-    const category = await db.mediaCategory.findUnique({
-      where: { id: catId }
-    });
+    const [categoryRows] = await db.execute<any[]>('SELECT id FROM media_categories WHERE id = ?', [catId]);
 
-    if (!category) {
+    if (categoryRows.length === 0) {
       return NextResponse.json({ error: "Category not found" }, { status: 404 });
     }
 
-    await db.mediaCategory.delete({
-      where: { id: catId }
-    });
+    await db.execute('DELETE FROM media_categories WHERE id = ?', [catId]);
 
     return NextResponse.json({ message: "Media category deleted successfully" });
   } catch (error) {

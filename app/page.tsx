@@ -8,15 +8,24 @@ import { ArrowRight, Eye, Landmark, Map, MapPin, Rocket, Sparkles } from 'lucide
 export const revalidate = 0;
 
 export default async function HomePage() {
-  const temples = await db.temple.findMany({
-    take: 3,
-    where: { status: 'Active' },
-    include: { category: true },
-  });
+  const [templeRows] = await db.execute<any[]>(
+    `SELECT t.*, c.name as category_name, c.slug as category_slug, c.description as category_description 
+     FROM temples t 
+     JOIN temple_categories c ON t.category_id = c.id 
+     WHERE t.status = 'Active' 
+     LIMIT 3`
+  );
+  const temples = templeRows.map(t => ({
+    ...t,
+    category: {
+      id: t.category_id,
+      name: t.category_name,
+      slug: t.category_slug,
+      description: t.category_description
+    }
+  }));
 
-  const categories = await db.templeCategory.findMany({
-    take: 4,
-  });
+  const [categories] = await db.execute<any[]>('SELECT * FROM temple_categories LIMIT 4');
 
   return (
     <div className="flex min-h-screen flex-col">

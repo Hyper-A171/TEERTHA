@@ -17,28 +17,31 @@ export async function GET(req: Request) {
     }
 
     // Fetch counts
-    const totalUsers = await db.user.count();
-    const totalTemples = await db.temple.count();
-    const totalCategories = await db.templeCategory.count();
-    const totalLogs = await db.activityLog.count();
+    const [[{ count: totalUsers }]] = await db.execute<any[]>('SELECT COUNT(*) as count FROM users');
+    const [[{ count: totalTemples }]] = await db.execute<any[]>('SELECT COUNT(*) as count FROM temples');
+    const [[{ count: totalCategories }]] = await db.execute<any[]>('SELECT COUNT(*) as count FROM temple_categories');
+    const [[{ count: totalLogs }]] = await db.execute<any[]>('SELECT COUNT(*) as count FROM activity_logs');
 
     // Fetch recent logs
-    const recentLogs = await db.activityLog.findMany({
-      take: 5,
-      orderBy: { created_at: "desc" },
-      include: {
-        user: {
-          select: { name: true, email: true }
-        }
-      }
-    });
+    const [recentLogs] = await db.execute<any[]>(
+      `SELECT a.*, u.name as user_name, u.email as user_email 
+       FROM activity_logs a 
+       JOIN users u ON a.user_id = u.id 
+       ORDER BY a.created_at DESC 
+       LIMIT 5`
+    );
+
+    const formattedLogs = recentLogs.map(log => ({
+      ...log,
+      user: { name: log.user_name, email: log.user_email }
+    }));
 
     return NextResponse.json({
       totalUsers,
       totalTemples,
       totalCategories,
       totalLogs,
-      recentLogs
+      recentLogs: formattedLogs
     });
   } catch (error) {
     console.error("Stats API error:", error);

@@ -25,14 +25,9 @@ export async function PUT(req: Request, { params }: RouteParams) {
     }
 
     // Check slug duplication
-    const duplicate = await db.temple.findFirst({
-      where: {
-        slug,
-        NOT: { id: templeId }
-      }
-    });
+    const [duplicate] = await db.execute<any[]>('SELECT id FROM temples WHERE slug = ? AND id != ?', [slug, templeId]);
 
-    if (duplicate) {
+    if (duplicate.length > 0) {
       return NextResponse.json({ error: "Temple slug must be unique" }, { status: 409 });
     }
 
@@ -45,28 +40,26 @@ export async function PUT(req: Request, { params }: RouteParams) {
       }, { status: 500 });
     }
 
-    const updated = await db.temple.update({
-      where: { id: templeId },
-      data: {
-        name,
-        slug,
-        description,
-        location,
-        thumbnail: driveThumbnail.url,
-        category_id: parseInt(category_id),
-        status: status || "Active"
-      }
-    });
+    const parsedCategoryId = parseInt(category_id);
+    const resolvedStatus = status || "Active";
+    await db.execute(
+      `UPDATE temples SET name = ?, slug = ?, description = ?, location = ?, thumbnail = ?, category_id = ?, status = ? WHERE id = ?`,
+      [name, slug, description, location, driveThumbnail.url, parsedCategoryId, resolvedStatus, templeId]
+    );
 
     // Log action
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Updated temple profile: ${name}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Updated temple profile: ${name}`]
+    );
 
-    return NextResponse.json(updated);
+    return NextResponse.json({
+      id: templeId,
+      name, slug, description, location, 
+      thumbnail: driveThumbnail.url, 
+      category_id: parsedCategoryId, 
+      status: resolvedStatus
+    });
   } catch (error) {
     console.error("Temple put error:", error);
     return NextResponse.json({ error: "Failed to update temple" }, { status: 500 });
@@ -84,25 +77,20 @@ export async function DELETE(req: Request, { params }: RouteParams) {
     const resolvedParams = await params;
     const templeId = parseInt(resolvedParams.id);
 
-    const temple = await db.temple.findUnique({
-      where: { id: templeId }
-    });
+    const [templeRows] = await db.execute<any[]>('SELECT id, name FROM temples WHERE id = ?', [templeId]);
 
-    if (!temple) {
+    if (templeRows.length === 0) {
       return NextResponse.json({ error: "Temple profile not found" }, { status: 404 });
     }
+    const temple = templeRows[0];
 
-    await db.temple.delete({
-      where: { id: templeId }
-    });
+    await db.execute('DELETE FROM temples WHERE id = ?', [templeId]);
 
     // Log action
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Deleted temple profile: ${temple.name}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Deleted temple profile: ${temple.name}`]
+    );
 
     return NextResponse.json({ message: "Temple deleted successfully" });
   } catch (error) {

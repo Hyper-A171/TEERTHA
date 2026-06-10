@@ -11,9 +11,7 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const categories = await db.mediaCategory.findMany({
-      orderBy: { name: 'asc' }
-    });
+    const [categories] = await db.execute<any[]>('SELECT * FROM media_categories ORDER BY name ASC');
     return NextResponse.json(categories);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch media categories' }, { status: 500 });
@@ -35,18 +33,14 @@ export async function POST(req: Request) {
     }
 
     // Check slug uniqueness
-    const duplicate = await db.mediaCategory.findUnique({
-      where: { slug }
-    });
-    if (duplicate) {
+    const [duplicate] = await db.execute<any[]>('SELECT id FROM media_categories WHERE slug = ?', [slug]);
+    if (duplicate.length > 0) {
       return NextResponse.json({ error: "Category slug must be unique" }, { status: 409 });
     }
 
-    const newCat = await db.mediaCategory.create({
-      data: { name, slug }
-    });
+    const [result] = await db.execute<any>('INSERT INTO media_categories (name, slug) VALUES (?, ?)', [name, slug]);
 
-    return NextResponse.json(newCat, { status: 201 });
+    return NextResponse.json({ id: result.insertId, name, slug }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to create media category' }, { status: 500 });
   }

@@ -16,10 +16,26 @@ export default async function TempleDetailPage({ params }: PageProps) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const temple = await db.temple.findUnique({
-    where: { slug },
-    include: { category: true },
-  });
+  const [templeRows] = await db.execute<any[]>(
+    `SELECT t.*, c.name as category_name, c.slug as category_slug, c.description as category_description 
+     FROM temples t 
+     JOIN temple_categories c ON t.category_id = c.id 
+     WHERE t.slug = ?`,
+    [slug]
+  );
+
+  let temple = null;
+  if (templeRows.length > 0) {
+    temple = {
+      ...templeRows[0],
+      category: {
+        id: templeRows[0].category_id,
+        name: templeRows[0].category_name,
+        slug: templeRows[0].category_slug,
+        description: templeRows[0].category_description
+      }
+    };
+  }
 
   if (!temple) {
     notFound();

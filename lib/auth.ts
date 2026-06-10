@@ -16,10 +16,11 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid email or password");
         }
 
-        const user = await db.user.findUnique({
-          where: { email: credentials.email },
-          include: { role: true }
-        });
+        const [rows] = await db.execute<any[]>(
+          'SELECT u.*, r.name as role_name FROM users u JOIN roles r ON u.role_id = r.id WHERE u.email = ? LIMIT 1',
+          [credentials.email]
+        );
+        const user = rows[0];
 
         if (!user) {
           throw new Error("No user found with this email");
@@ -36,7 +37,7 @@ export const authOptions: NextAuthOptions = {
           id: user.id.toString(),
           name: user.name,
           email: user.email,
-          role: user.role.name,
+          role: user.role_name,
         };
       }
     })

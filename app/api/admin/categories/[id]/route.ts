@@ -24,31 +24,21 @@ export async function PUT(req: Request, { params }: RouteParams) {
     }
 
     // Check slug duplication
-    const duplicate = await db.templeCategory.findFirst({
-      where: {
-        slug,
-        NOT: { id: catId }
-      }
-    });
+    const [duplicate] = await db.execute<any[]>('SELECT id FROM temple_categories WHERE slug = ? AND id != ?', [slug, catId]);
 
-    if (duplicate) {
+    if (duplicate.length > 0) {
       return NextResponse.json({ error: "Category slug must be unique" }, { status: 409 });
     }
 
-    const updated = await db.templeCategory.update({
-      where: { id: catId },
-      data: { name, slug, description }
-    });
+    await db.execute('UPDATE temple_categories SET name = ?, slug = ?, description = ? WHERE id = ?', [name, slug, description, catId]);
 
     // Log action
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Updated category: ${name}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Updated category: ${name}`]
+    );
 
-    return NextResponse.json(updated);
+    return NextResponse.json({ id: catId, name, slug, description });
   } catch (error) {
     return NextResponse.json({ error: "Failed to update category" }, { status: 500 });
   }
@@ -65,25 +55,20 @@ export async function DELETE(req: Request, { params }: RouteParams) {
     const resolvedParams = await params;
     const catId = parseInt(resolvedParams.id);
 
-    const category = await db.templeCategory.findUnique({
-      where: { id: catId }
-    });
+    const [categoryRows] = await db.execute<any[]>('SELECT id, name FROM temple_categories WHERE id = ?', [catId]);
 
-    if (!category) {
+    if (categoryRows.length === 0) {
       return NextResponse.json({ error: "Category not found" }, { status: 404 });
     }
+    const category = categoryRows[0];
 
-    await db.templeCategory.delete({
-      where: { id: catId }
-    });
+    await db.execute('DELETE FROM temple_categories WHERE id = ?', [catId]);
 
     // Log action
-    await db.activityLog.create({
-      data: {
-        user_id: parseInt((session.user as any).id),
-        action: `Deleted category: ${category.name}`
-      }
-    });
+    await db.execute(
+      'INSERT INTO activity_logs (user_id, action, created_at) VALUES (?, ?, NOW())',
+      [parseInt((session.user as any).id), `Deleted category: ${category.name}`]
+    );
 
     return NextResponse.json({ message: "Category deleted successfully" });
   } catch (error) {

@@ -15,37 +15,39 @@ export default async function TemplesPage({ searchParams }: PageProps) {
   const searchVal = resolvedParams?.search || '';
   const categorySlug = resolvedParams?.category || '';
 
-  const categories = await db.templeCategory.findMany();
+  const [categories] = await db.execute<any[]>('SELECT * FROM temple_categories ORDER BY name ASC');
 
-  const temples = await db.temple.findMany({
-    where: {
-      status: 'Active',
-      AND: [
-        searchVal
-          ? {
-              OR: [
-                { name: { contains: searchVal } },
-                { description: { contains: searchVal } },
-                { location: { contains: searchVal } },
-              ],
-            }
-          : {},
-        categorySlug
-          ? {
-              category: {
-                slug: categorySlug,
-              },
-            }
-          : {},
-      ],
-    },
-    include: {
-      category: true,
-    },
-    orderBy: {
-      name: 'asc',
-    },
-  });
+  let query = `
+    SELECT t.*, c.name as category_name, c.slug as category_slug, c.description as category_description 
+    FROM temples t 
+    JOIN temple_categories c ON t.category_id = c.id 
+    WHERE t.status = 'Active'
+  `;
+  const params: any[] = [];
+
+  if (searchVal) {
+    query += ` AND (t.name LIKE ? OR t.description LIKE ? OR t.location LIKE ?)`;
+    const searchLike = `%${searchVal}%`;
+    params.push(searchLike, searchLike, searchLike);
+  }
+
+  if (categorySlug) {
+    query += ` AND c.slug = ?`;
+    params.push(categorySlug);
+  }
+
+  query += ` ORDER BY t.name ASC`;
+
+  const [templeRows] = await db.execute<any[]>(query, params);
+  const temples = templeRows.map(t => ({
+    ...t,
+    category: {
+      id: t.category_id,
+      name: t.category_name,
+      slug: t.category_slug,
+      description: t.category_description
+    }
+  }));
 
   const activeCategoryName = categories.find((category) => category.slug === categorySlug)?.name;
 
