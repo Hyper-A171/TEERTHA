@@ -23,13 +23,16 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <?php if ($current_page == 'index'): ?>
+    <link rel="stylesheet" href="assets/css/cinematic.css">
+    <?php endif; ?>
 </head>
-<body>
+<body<?php echo isset($body_class) ? ' class="' . htmlspecialchars($body_class, ENT_QUOTES, 'UTF-8') . '"' : ''; ?>>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <span class="brand-text">TEE<span class="brand-highlight">ऋ</span>THA</span>
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
+                <img src="assets/images/logo.png" alt="TEERTHA Logo" style="height: 60px; width: auto;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

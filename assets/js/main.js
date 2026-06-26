@@ -247,11 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    const bsCollapse = navbarCollapse ? new bootstrap.Collapse(navbarCollapse, { toggle: false }) : null;
+    const bsCollapse = (navbarCollapse && window.bootstrap) ? new bootstrap.Collapse(navbarCollapse, { toggle: false }) : null;
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+            if (bsCollapse && window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
                 bsCollapse.hide();
             }
         });
