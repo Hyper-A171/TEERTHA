@@ -223,8 +223,7 @@ textarea {
     height: 46px;
     padding: 0;
     display: none;
-    border: 1px solid currentColor;
-    border-radius: 50%;
+    border: none;
     color: inherit;
     background: transparent;
     flex: 0 0 auto;

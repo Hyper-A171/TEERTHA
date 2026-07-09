@@ -21,9 +21,12 @@ function pageNavClass(string $page, string $activePage): string
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Geist:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
     <link rel="stylesheet" href="assets/css/theme-pages.css">
 </head>
-<body class="theme-page">
+<body class="theme-page loading-active">
+    <?php require __DIR__ . '/loader.php'; ?>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header" id="site-header">

@@ -8,7 +8,7 @@
     <meta name="description"
         content="Discover India's sacred temples through immersive Virtual Reality, 360° cinematography, and authentic storytelling. Teertha by Atreal Studios preserves spiritual heritage for generations.">
     <meta name="theme-color" content="#a63b00">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="assets/css/tailwind.css">
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -283,158 +283,6 @@
         .btn-loading {
             opacity: 0.7;
             pointer-events: none;
-        }
-
-        /* Loading Screen styles */
-        body.loading-active {
-            overflow: hidden !important;
-            height: 100vh !important;
-        }
-
-        #loading-screen {
-            opacity: 1;
-            transition: opacity 0.8s var(--ease-smooth), visibility 0s linear 0.8s;
-        }
-
-        #loading-screen.is-exiting {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        #loading-content {
-            opacity: 1;
-            transform: scale(1);
-            animation: loader-content-enter 0.9s var(--ease-out-expo) backwards;
-            transition: opacity 0.45s var(--ease-smooth), transform 0.7s var(--ease-out-expo);
-        }
-
-        #loading-content.is-exiting {
-            opacity: 0;
-            transform: scale(0.98);
-        }
-
-        @keyframes loader-content-enter {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 28px, 0);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        .loader-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.7rem;
-        }
-
-        .loader-dot {
-            width: 0.4rem;
-            height: 0.4rem;
-            border-radius: 999px;
-            background: #a63b00;
-            opacity: 0.25;
-            animation: loader-dot-pulse 1.35s ease-in-out infinite;
-        }
-
-        .loader-dot:nth-child(2) {
-            animation-delay: 0.16s;
-        }
-
-        .loader-dot:nth-child(3) {
-            animation-delay: 0.32s;
-        }
-
-        .loader-dot:nth-child(4) {
-            animation-delay: 0.48s;
-        }
-
-        .loader-dot:nth-child(5) {
-            animation-delay: 0.64s;
-        }
-
-        .loader-dot:nth-child(6) {
-            animation-delay: 0.80s;
-        }
-
-        .loader-dot:nth-child(7) {
-            animation-delay: 0.96s;
-        }
-
-        @keyframes loader-dot-pulse {
-
-            0%,
-            80%,
-            100% {
-                opacity: 0.22;
-                transform: scale(0.65);
-            }
-
-            40% {
-                opacity: 0.85;
-                transform: scale(1.15);
-            }
-        }
-
-        .cinematic-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background: #f8f9fa;
-        }
-
-        .overlay-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.4) 100%);
-        }
-
-        .loader-logo {
-            mix-blend-mode: multiply;
-            animation: glow 4s ease-in-out infinite;
-        }
-
-
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 2s ease-out forwards;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                filter: drop-shadow(0 0 5px rgba(166, 59, 0, 0.15));
-            }
-
-            50% {
-                filter: drop-shadow(0 0 15px rgba(166, 59, 0, 0.4));
-            }
         }
 
         @keyframes float-subtle {
@@ -953,178 +801,13 @@
             }
         }
     </style>
-    <script
-        id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-high": "#e7e8e9", "surface-dim": "#d9dadb", "surface-bright": "#f8f9fa", "surface-tint": "#a63b00", "on-tertiary-fixed": "#2d1600", "on-error-container": "#93000a", "tertiary-fixed": "#ffdcc0", "on-secondary-fixed-variant": "#3d4756", "primary-fixed-dim": "#ffb599", "surface-container-lowest": "#ffffff", "on-tertiary-container": "#452400", "on-secondary-fixed": "#121c2a", "on-surface": "#191c1d", secondary: "#555f6f", "on-error": "#ffffff", "tertiary-container": "#d97c00", primary: "#a63b00", "inverse-primary": "#ffb599", "on-background": "#191c1d", tertiary: "#8d4f00", "on-primary-container": "#531900", error: "#ba1a1a", "primary-container": "#ff5e00", surface: "#f8f9fa", "tertiary-fixed-dim": "#ffb876", "secondary-container": "#d6e0f3", "surface-container-low": "#f3f4f5", "secondary-fixed": "#d9e3f6", background: "#f8f9fa", "error-container": "#ffdad6", "on-secondary": "#ffffff", "outline-variant": "#e4bfb1", "on-primary": "#ffffff", "inverse-on-surface": "#f0f1f2", "surface-variant": "#e1e3e4", "on-surface-variant": "#5b4137", "on-tertiary-fixed-variant": "#6b3b00", outline: "#8f7065", "on-primary-fixed": "#370e00", "inverse-surface": "#2e3132", "on-tertiary": "#ffffff", "surface-container": "#edeeef", "secondary-fixed-dim": "#bdc7d9", "primary-fixed": "#ffdbce", "on-primary-fixed-variant": "#7f2b00", "on-secondary-container": "#596373", "surface-container-highest": "#e1e3e4", "temple-gold": "#D4AF37" }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }, spacing: { unit: "8px", gutter: "24px", "margin-mobile": "20px", "margin-desktop": "64px", "container-max": "1280px" }, fontFamily: { "headline-lg": ["Geist"], "label-md": ["Geist"], "body-lg": ["Geist"], "headline-sm": ["Geist"], "display-lg": ["Geist"], "display-lg-mobile": ["Geist"], "body-md": ["Geist"], headline: ["Geist"], display: ["Geist"], body: ["Geist"], label: ["Geist"], "cinzel": ["Cinzel", "serif"] }, fontSize: { "headline-lg": ["32px", { lineHeight: "1.3", letterSpacing: "-0.02em", fontWeight: "600" }], "label-md": ["14px", { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }], "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }], "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "-0.04em", fontWeight: "700" }], "display-lg-mobile": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }], "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }] } } } };</script>
+
+    <link rel="stylesheet" href="assets/css/loader.css">
 </head>
 
 <body
     class="loading-active bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
-    <!-- Loading Screen -->
-    <div id="loading-screen"
-        class="fixed inset-0 z-[9999] bg-background overflow-hidden flex flex-col items-center justify-center">
-        <!-- 3D Animation Background Placeholder -->
-        <!-- 3D Animation Background Placeholder -->
-        <div class="cinematic-bg absolute inset-0 z-0 bg-background">
-            <canvas id="shader-canvas-ANIMATION_1" style="display:block;width:100%;height:100%" width="1280"
-                height="1024"></canvas>
-            <script>
-                (function () {
-                    const canvas = document.getElementById('shader-canvas-ANIMATION_1');
-                    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                    let resizeObserver = null;
-                    let animationFrame = null;
-                    let running = false;
-
-                    function syncSize() {
-                        const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.75);
-                        const w = Math.round((canvas.clientWidth || 1280) * pixelRatio);
-                        const h = Math.round((canvas.clientHeight || 720) * pixelRatio);
-                        if (canvas.width !== w || canvas.height !== h) {
-                            canvas.width = w;
-                            canvas.height = h;
-                        }
-                    }
-                    if (typeof ResizeObserver !== 'undefined') {
-                        resizeObserver = new ResizeObserver(syncSize);
-                        resizeObserver.observe(canvas);
-                    }
-                    syncSize();
-
-                    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-                    if (!gl) return;
-                    const vs = `attribute vec2 a_position;
-        varying vec2 v_texCoord;
-        void main() {
-          v_texCoord = a_position * 0.5 + 0.5;
-          gl_Position = vec4(a_position, 0.0, 1.0);
-        }`;
-                    const fs = `precision highp float;
-        varying vec2 v_texCoord;
-        uniform float u_time;
-        uniform vec2 u_resolution;
-
-        void main() {
-            vec2 uv = v_texCoord;
-            
-            // Smooth moving gradients inspired by the primary palette
-            vec3 color1 = vec3(1.0, 0.37, 0.0); // #FF5E00
-            vec3 color2 = vec3(1.0, 0.48, 0.0); // #FF7A00
-            vec3 color3 = vec3(1.0, 0.58, 0.0); // #FF9300
-            vec3 color4 = vec3(1.0, 0.42, 0.0); // #FF6A00
-            
-            float noise1 = sin(uv.x * 3.0 + u_time * 0.5) * cos(uv.y * 2.0 + u_time * 0.3);
-            float noise2 = sin(uv.y * 4.0 - u_time * 0.4) * cos(uv.x * 3.0 + u_time * 0.2);
-            
-            vec3 finalColor = mix(color1, color2, uv.x + noise1 * 0.2);
-            finalColor = mix(finalColor, color3, uv.y + noise2 * 0.2);
-            finalColor = mix(finalColor, color4, noise1 * noise2);
-            
-            // Lighten it up to feel airy and premium
-            finalColor = mix(finalColor, vec3(1.0), 0.85);
-            
-            gl_FragColor = vec4(finalColor, 1.0);
-        }`;
-                    function cs(type, src) {
-                        const s = gl.createShader(type);
-                        gl.shaderSource(s, src);
-                        gl.compileShader(s);
-                        return s;
-                    }
-                    const prog = gl.createProgram();
-                    gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
-                    gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
-                    gl.linkProgram(prog);
-                    gl.useProgram(prog);
-                    const buf = gl.createBuffer();
-                    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-                    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-                    const pos = gl.getAttribLocation(prog, 'a_position');
-                    gl.enableVertexAttribArray(pos);
-                    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-                    const uTime = gl.getUniformLocation(prog, 'u_time');
-                    const uRes = gl.getUniformLocation(prog, 'u_resolution');
-
-                    function draw(t) {
-                        if (typeof ResizeObserver === 'undefined') syncSize();
-                        gl.viewport(0, 0, canvas.width, canvas.height);
-                        if (uTime) gl.uniform1f(uTime, t * 0.001);
-                        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
-                        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                    }
-
-                    function render(t) {
-                        if (!running) return;
-                        draw(t);
-                        animationFrame = requestAnimationFrame(render);
-                    }
-
-                    function start() {
-                        if (running || reduceMotion) return;
-                        running = true;
-                        animationFrame = requestAnimationFrame(render);
-                    }
-
-                    function stop() {
-                        running = false;
-                        if (animationFrame !== null) {
-                            cancelAnimationFrame(animationFrame);
-                            animationFrame = null;
-                        }
-                    }
-
-                    function destroy() {
-                        stop();
-                        if (resizeObserver) resizeObserver.disconnect();
-                        document.removeEventListener('visibilitychange', handleVisibility);
-                    }
-
-                    function handleVisibility() {
-                        if (document.hidden) {
-                            stop();
-                        } else {
-                            start();
-                        }
-                    }
-
-                    document.addEventListener('visibilitychange', handleVisibility);
-                    document.addEventListener('loader:complete', destroy, { once: true });
-
-                    if (reduceMotion) {
-                        draw(0);
-                    } else {
-                        start();
-                    }
-                })();
-            </script>
-        </div>
-
-        <!-- Main Loading Content -->
-        <div id="loading-content" class="overlay-content text-center px-4 transition-opacity duration-500">
-            <!-- Logo Section -->
-            <div class="mb-8">
-                <img alt="TEERTHA Logo" class="loader-logo w-32 h-32 md:w-44 md:h-44 mx-auto object-contain mb-2"
-                    src="assets/images/teertha-loader-logo.png" />
-                <div class="flex flex-col items-center">
-                    <div class="text-primary text-xl md:text-3xl mt-4 font-medium tracking-[0.1em] font-serif"
-                        style="text-shadow: 0 2px 10px rgba(166, 59, 0, 0.2);">धर्मो रक्षति रक्षितः</div>
-                    <div class="text-primary/80 text-xs mt-3 tracking-[0.2em] uppercase font-cinzel font-bold">
-                        Dharma protects those who protect it</div>
-
-                </div>
-            </div>
-
-            <div class="loader-dots" aria-hidden="true">
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-
-            </div>
-        </div>
-    </div>
+    <?php require __DIR__ . '/includes/loader.php'; ?>
     <?php
     $activePage = 'home';
     if (!function_exists('pageNavClass')) {
@@ -2265,101 +1948,13 @@
     </script>
 
     <script>
-        // Loading Screen logic
+        // Scroll Indicator behavior
         (function () {
-
-            // Progress Simulation
-            const ring = document.getElementById('progress-ring');
-            const percentText = document.getElementById('progress-percent');
-            let progress = 0;
-            let progressInterval;
-
-            const fillProgress = () => {
-                if (progress < 100) {
-                    progress += Math.random() * 8.0 + 6.0;
-                    if (progress > 100) progress = 100;
-
-                    if (ring) {
-                        const offset = 301.59 - (progress / 100 * 301.59);
-                        ring.style.strokeDashoffset = offset;
-                    }
-                    if (percentText) {
-                        percentText.textContent = `${Math.floor(progress)}%`;
-                    }
-
-                    if (progress < 100) {
-                        progressInterval = setTimeout(fillProgress, 20 + Math.random() * 30);
-                    } else {
-                        setTimeout(completeLoading, 500);
-                    }
-                }
-            };
-
-
-
-            // Complete Loading Transition
-            let loadingCompleted = false;
-            window.completeLoading = function () {
-                if (loadingCompleted) return;
-                loadingCompleted = true;
-
-                // Clear any active progress interval
-                clearTimeout(progressInterval);
-
-                const loadingContent = document.getElementById('loading-content');
-                if (loadingContent) {
-                    loadingContent.classList.add('is-exiting');
-                }
-
-                const loader = document.getElementById('loading-screen');
-                setTimeout(() => {
-                    if (loader) {
-                        loader.classList.add('is-exiting');
-                    }
-                }, 160);
-
-                setTimeout(() => {
-                    const heroContent = document.getElementById('hero-content');
-                    if (heroContent) {
-                        heroContent.classList.add('visible');
-                    }
-                }, 280);
-
-                document.body.classList.remove('loading-active');
-
-                setTimeout(() => {
-                    if (loader) {
-                        loader.style.display = 'none';
-                    }
-                    document.dispatchEvent(new Event('loader:complete'));
-                }, 1050);
-            }
-
-            // Start initialization
-            document.body.classList.add('loading-active');
-            setTimeout(fillProgress, 300);
-        })();
-    </script>
-
-    <script>
-        // Navbar Scroll behavior & Mobile Menu Drawer
-        (function () {
-            const nav = document.getElementById('navbar');
-            const navBrand = document.getElementById('nav-brand');
-            const navLinksContainer = document.getElementById('nav-links');
-            const navLinks = document.querySelectorAll('#nav-links a');
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
             const scrollIndicator = document.getElementById('scroll-indicator');
-            const technologySection = document.getElementById('technology-section');
-            let navIsSolid = null;
             let scrollTicking = false;
 
-            const updateNav = () => {
+            const updateScroll = () => {
                 scrollTicking = false;
-
                 if (scrollIndicator) {
                     if (window.scrollY > 50) {
                         scrollIndicator.style.opacity = '0';
@@ -2371,92 +1966,16 @@
                         scrollIndicator.style.pointerEvents = '';
                     }
                 }
-
-                const shouldBeSolid = window.scrollY > (window.innerHeight * 0.8);
-                if (shouldBeSolid === navIsSolid) return;
-                navIsSolid = shouldBeSolid;
-
-                if (shouldBeSolid) {
-                    nav.classList.remove('bg-transparent');
-                    nav.classList.add('bg-white/95', 'dark:bg-surface-dim/95', 'backdrop-blur-xl', 'border-b', 'border-outline-variant/10', 'shadow-sm');
-                    if (navBrand) {
-                        navBrand.classList.remove('text-white');
-                        navBrand.classList.add('text-primary');
-                    }
-                    if (mobileBtn) {
-                        mobileBtn.classList.remove('text-white');
-                        mobileBtn.classList.add('text-on-surface');
-                    }
-                    if (navLinksContainer) {
-                        navLinksContainer.classList.remove('opacity-0', 'pointer-events-none');
-                    }
-                    navLinks.forEach(link => {
-                        link.classList.remove('text-white/80', 'hover:text-white');
-                        link.classList.add('text-on-surface', 'hover:text-primary');
-                    });
-                } else {
-                    nav.classList.add('bg-transparent');
-                    nav.classList.remove('bg-white/95', 'dark:bg-surface-dim/95', 'backdrop-blur-xl', 'border-b', 'border-outline-variant/10', 'shadow-sm');
-                    if (navBrand) {
-                        navBrand.classList.remove('text-primary');
-                        navBrand.classList.add('text-white');
-                    }
-                    if (mobileBtn) {
-                        mobileBtn.classList.remove('text-on-surface');
-                        mobileBtn.classList.add('text-white');
-                    }
-                    if (navLinksContainer) {
-                        navLinksContainer.classList.add('opacity-0', 'pointer-events-none');
-                    }
-                    navLinks.forEach(link => {
-                        link.classList.add('text-white/80', 'hover:text-white');
-                        link.classList.remove('text-on-surface', 'hover:text-primary');
-                    });
-                }
             };
 
-            const requestNavUpdate = () => {
+            const requestUpdate = () => {
                 if (scrollTicking) return;
                 scrollTicking = true;
-                requestAnimationFrame(updateNav);
+                requestAnimationFrame(updateScroll);
             };
 
-            window.addEventListener('scroll', requestNavUpdate, { passive: true });
-            window.addEventListener('resize', requestNavUpdate, { passive: true });
-
-            // Initial scroll check
-            updateNav();
-
-            // Mobile Menu Drawer functionality
-            if (mobileBtn && mobileMenu && mobileMenuClose && mobileMenuOverlay) {
-                const openMenu = () => {
-                    mobileMenu.classList.remove('translate-x-full');
-                    mobileMenu.classList.add('is-open');
-                    mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                    document.body.classList.add('overflow-hidden');
-                };
-
-                const closeMenu = () => {
-                    mobileMenu.classList.add('translate-x-full');
-                    mobileMenu.classList.remove('is-open');
-                    mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-                    document.body.classList.remove('overflow-hidden');
-                };
-
-                mobileBtn.addEventListener('click', openMenu);
-                mobileMenuClose.addEventListener('click', closeMenu);
-                mobileMenuOverlay.addEventListener('click', closeMenu);
-                document.addEventListener('keydown', (event) => {
-                    if (event.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
-                        closeMenu();
-                    }
-                });
-
-                // Close menu when clicking on any drawer link
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-            }
+            window.addEventListener('scroll', requestUpdate, { passive: true });
+            updateScroll();
         })();
     </script>
 

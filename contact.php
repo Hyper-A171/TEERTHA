@@ -76,7 +76,7 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
                     <div class="form-field form-field--full">
                         <label for="contact-subject">Subject</label>
-                        <input id="contact-subject" name="Subject" type="text" required>
+                        <input id="contact-subject" name="Subject" type="text" autocomplete="off" required>
                     </div>
                     <div class="form-field form-field--full">
                         <label for="contact-message">Message</label>
