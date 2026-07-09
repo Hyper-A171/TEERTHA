@@ -119,16 +119,18 @@ textarea {
     gap: clamp(1.25rem, 2vw, 2.25rem);
     margin-left: auto;
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
-    
-    /* Hide on first load */
+}
+
+/* Hide on first load ONLY for index.php (which does not have .theme-page body class) */
+body:not(.theme-page) .site-nav {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: translateY(-10px);
 }
 
-/* Show when scrolled */
-.site-header.is-scrolled .site-nav {
+/* Show when scrolled ONLY for index.php */
+body:not(.theme-page) .site-header.is-scrolled .site-nav {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
