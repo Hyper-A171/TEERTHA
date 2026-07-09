@@ -55,9 +55,9 @@
                             <i class="bi bi-envelope"></i>
                             <span>hello@teertha.in</span>
                         </div>
-                        <div class="contact-item">
+                         <div class="contact-item">
                             <i class="bi bi-telephone"></i>
-                            <span>+91 98765 43210</span>
+                            <span>+91 70306 03067</span>
                         </div>
                         <div class="contact-item">
                             <i class="bi bi-geo-alt"></i>

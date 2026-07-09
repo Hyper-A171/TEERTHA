@@ -1,289 +1,154 @@
 <?php
-$page_title = 'Partner';
-include 'includes/header.php';
+declare(strict_types=1);
+
+$pageTitle = 'Partners';
+$pageDescription = 'Partner with TEERTHA to document, preserve, and responsibly share a temple or sacred heritage site through immersive technology.';
+$activePage = 'partner';
+
+require __DIR__ . '/includes/page-header.php';
 ?>
 
-<!-- ============================================
-     PARTNER HERO
-     ============================================ -->
-<section class="hero" style="min-height: 60vh;">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="container">
-        <div class="hero-content" style="padding-top: 80px;">
-            <span class="hero-label">Partnerships</span>
-            <h1 class="hero-title">Partner With<br><span class="italic">Teertha</span></h1>
-            <p class="hero-subtitle">Join us in preserving India's spiritual heritage for generations to come.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================
-     WHY PARTNER
-     ============================================ -->
-<section class="section" id="why-partner">
-    <div class="container">
-        <div class="text-center mb-5 fade-in-up">
-            <span class="section-label">Why Partner</span>
-            <h2 class="section-title">Why Partner With Teertha</h2>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6 fade-in-up">
-                <div class="card-premium h-100">
-                    <div class="card-icon">
-                        <i class="bi bi-globe"></i>
-                    </div>
-                    <h4 class="card-title">Global Reach</h4>
-                    <p class="card-text">Your temple's story reaches devotees worldwide, transcending geographical boundaries and connecting with the global diaspora.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 fade-in-up delay-1">
-                <div class="card-premium h-100">
-                    <div class="card-icon">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h4 class="card-title">Digital Preservation</h4>
-                    <p class="card-text">Create a permanent digital archive of your temple's history, rituals, and architecture, protected against the ravages of time.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 fade-in-up delay-2">
-                <div class="card-premium h-100">
-                    <div class="card-icon">
-                        <i class="bi bi-cash-stack"></i>
-                    </div>
-                    <h4 class="card-title">Revenue Generation</h4>
-                    <p class="card-text">Generate sustainable revenue through digital experiences while maintaining the sanctity of physical temple visits.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 fade-in-up">
-                <div class="card-premium h-100">
-                    <div class="card-icon">
-                        <i class="bi bi-people"></i>
-                    </div>
-                    <h4 class="card-title">Community Building</h4>
-                    <p class="card-text">Build a global community of devotees connected to your temple through shared digital experiences.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 fade-in-up delay-1">
-                <div class="card-premium h-100">
-                    <div class="card-icon">
-                        <i class="bi bi-mortarboard"></i>
-                    </div>
-                    <h4 class="card-title">Educational Value</h4>
-                    <p class="card-text">Create educational resources that teach younger generations about their heritage, traditions, and spiritual roots.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 fade-in-up delay-2">
-                <div class="card-premium h-100">
-                    <div class="card-icon">
-                        <i class="bi bi-award"></i>
-                    </div>
-                    <h4 class="card-title">Cinematic Quality</h4>
-                    <p class="card-text">Professional production quality that matches the grandeur of your temple, created with deep cultural sensitivity.</p>
-                </div>
+<main id="main-content">
+    <section class="page-hero page-hero--sunset">
+        <div class="page-hero__texture" aria-hidden="true"></div>
+        <div class="page-hero__content">
+            <div class="eyebrow">For Temple Trusts &amp; Cultural Partners</div>
+            <h1>Preserve the Story. Extend the Legacy.</h1>
+            <p>Build a responsible digital record of your sacred place and make its heritage accessible without losing its context, dignity, or voice.</p>
+            <div class="hero-actions">
+                <a class="button button--primary" href="#partner-inquiry">Start a Conversation</a>
+                <a class="button button--light" href="#partnership-model">How Partnership Works</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ============================================
-     WHAT WE PRESERVE
-     ============================================ -->
-<section class="section section-dark" id="what-preserve">
-    <div class="container">
-        <div class="text-center mb-5 fade-in-up">
-            <span class="section-label">Documentation</span>
-            <h2 class="section-title">What We Preserve</h2>
+    <section class="section section--white">
+        <div class="container">
+            <div class="section-heading section-heading--center">
+                <div class="section-kicker">Why Partner With TEERTHA</div>
+                <h2>Technology in Service of Heritage.</h2>
+                <p>Our role is to support custodianship—not replace it. Every project is guided by the people who understand and protect the sacred place.</p>
+            </div>
+
+            <div class="card-grid">
+                <article class="info-card">
+                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">archive</span></div>
+                    <h3>Digital Preservation</h3>
+                    <p>Create a structured record of architecture, stories, rituals, sound, and community memory.</p>
+                </article>
+                <article class="info-card">
+                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">public</span></div>
+                    <h3>Responsible Reach</h3>
+                    <p>Help devotees, learners, and diaspora communities connect across distance with context.</p>
+                </article>
+                <article class="info-card">
+                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">school</span></div>
+                    <h3>Educational Value</h3>
+                    <p>Give future generations an engaging way to learn the history and significance of the place.</p>
+                </article>
+                <article class="info-card">
+                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span></div>
+                    <h3>Cultural Stewardship</h3>
+                    <p>Define what is documented, how it is presented, and where cultural boundaries must remain.</p>
+                </article>
+            </div>
         </div>
+    </section>
 
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6 fade-in-up">
-                <div class="card-dark card-premium text-center h-100">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-building"></i>
+    <section class="section section--soft" id="partnership-model">
+        <div class="container split-layout split-layout--reverse">
+            <div class="split-media">
+                <img src="assets/images/temple-prayer-interior.jpg" alt="A quiet moment of devotion inside an intricately carved temple">
+            </div>
+            <div class="split-copy">
+                <div class="section-kicker">Partnership Model</div>
+                <h2>Built on Trust, Clarity, and Consent.</h2>
+                <p>We define the project together, with clear review points from research through final release.</p>
+                <ul class="check-list">
+                    <li>
+                        <span class="material-symbols-outlined" aria-hidden="true">forum</span>
+                        <span><strong>Shared intent</strong><span>Agree on goals, audiences, access, and cultural considerations.</span></span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined" aria-hidden="true">fact_check</span>
+                        <span><strong>Verified narrative</strong><span>Review stories and interpretation with authorised stakeholders.</span></span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                        <span><strong>Transparent review</strong><span>See and approve the experience at defined production milestones.</span></span>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined" aria-hidden="true">handshake</span>
+                        <span><strong>Long-term relationship</strong><span>Plan preservation, access, and future updates beyond launch.</span></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--white" id="partner-inquiry">
+        <div class="container contact-grid">
+            <div>
+                <div class="section-heading">
+                    <div class="section-kicker">Begin a Partnership</div>
+                    <h2>Tell Us About the Heritage You Protect.</h2>
+                    <p>Share the place, organisation, or cultural initiative you represent. The form opens your email application with the details addressed to our partnerships team.</p>
+                </div>
+                <div class="contact-stack">
+                    <div class="contact-card">
+                        <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                        <div><strong>Partnerships</strong><a href="mailto:partner@teertha.com">partner@teertha.com</a></div>
                     </div>
-                    <h4 class="card-title">Architecture</h4>
-                    <p class="card-text">Complete 3D scans, 360° captures, and detailed documentation of temple structures, sculptures, and design elements.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 fade-in-up delay-1">
-                <div class="card-dark card-premium text-center h-100">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-music-note"></i>
+                    <div class="contact-card">
+                        <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                        <div><strong>Studio</strong><span>Mumbai, Maharashtra, India</span></div>
                     </div>
-                    <h4 class="card-title">Rituals & Aartis</h4>
-                    <p class="card-text">High-fidelity recordings of daily rituals, special pujas, and aartis with spatial audio for immersive playback.</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 fade-in-up delay-2">
-                <div class="card-dark card-premium text-center h-100">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-book"></i>
+
+            <div class="form-panel">
+                <h2>Partnership Inquiry</h2>
+                <p>Provide a short overview and we can begin with the right context.</p>
+                <form class="form-grid" action="mailto:partner@teertha.com" method="post" enctype="text/plain">
+                    <div class="form-field">
+                        <label for="partner-name">Your name</label>
+                        <input id="partner-name" name="Name" type="text" autocomplete="name" required>
                     </div>
-                    <h4 class="card-title">Stories & Legends</h4>
-                    <p class="card-text">Documented oral histories, mythological narratives, and scholarly research presented as interactive stories.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 fade-in-up delay-3">
-                <div class="card-dark card-premium text-center h-100">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-calendar-event"></i>
+                    <div class="form-field">
+                        <label for="partner-email">Email address</label>
+                        <input id="partner-email" name="Email" type="email" autocomplete="email" required>
                     </div>
-                    <h4 class="card-title">Festivals</h4>
-                    <p class="card-text">Comprehensive coverage of annual festivals, special events, and celebrations with multi-angle captures.</p>
-                </div>
+                    <div class="form-field">
+                        <label for="organisation">Organisation</label>
+                        <input id="organisation" name="Organisation" type="text" autocomplete="organization" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="partner-role">Your role</label>
+                        <input id="partner-role" name="Role" type="text" autocomplete="organization-title">
+                    </div>
+                    <div class="form-field form-field--full">
+                        <label for="partner-interest">Partnership interest</label>
+                        <select id="partner-interest" name="Interest" required>
+                            <option value="">Select an area</option>
+                            <option>Temple documentation</option>
+                            <option>Virtual experience</option>
+                            <option>Digital heritage archive</option>
+                            <option>Research or cultural collaboration</option>
+                            <option>Technology partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-field form-field--full">
+                        <label for="partner-message">Tell us about the project</label>
+                        <textarea id="partner-message" name="Project overview" required></textarea>
+                    </div>
+                    <div class="form-field form-field--full">
+                        <button class="button button--primary" type="submit">Open Partnership Email</button>
+                    </div>
+                </form>
+                <p class="form-note">Submitting opens your default email application; no information is stored on this website.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
-<!-- ============================================
-     HOW PARTNERSHIP WORKS
-     ============================================ -->
-<section class="section" id="partnership-process">
-    <div class="container">
-        <div class="text-center mb-5 fade-in-up">
-            <span class="section-label">The Process</span>
-            <h2 class="section-title">How Partnership Works</h2>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6 fade-in-up">
-                <div class="card-premium text-center h-100">
-                    <div class="step-circle mx-auto mb-3" style="position: static; transform: none;">1</div>
-                    <h4 class="card-title">Initial Consultation</h4>
-                    <p class="card-text">We meet with temple authorities to understand your vision, requirements, and sacred protocols.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 fade-in-up delay-1">
-                <div class="card-premium text-center h-100">
-                    <div class="step-circle mx-auto mb-3" style="position: static; transform: none;">2</div>
-                    <h4 class="card-title">Planning & Research</h4>
-                    <p class="card-text">Our team conducts thorough research and creates a detailed production plan respecting all traditions.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 fade-in-up delay-2">
-                <div class="card-premium text-center h-100">
-                    <div class="step-circle mx-auto mb-3" style="position: static; transform: none;">3</div>
-                    <h4 class="card-title">Production</h4>
-                    <p class="card-text">Professional capture using 360° cameras, drones, and spatial audio equipment with minimal disruption.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 fade-in-up delay-3">
-                <div class="card-premium text-center h-100">
-                    <div class="step-circle mx-auto mb-3" style="position: static; transform: none;">4</div>
-                    <h4 class="card-title">Launch & Support</h4>
-                    <p class="card-text">Your temple goes live on Teertha with ongoing support, updates, and community engagement.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================
-     PARTNER INQUIRY FORM
-     ============================================ -->
-<section class="section section-dark" id="inquiry-form">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="text-center mb-5 fade-in-up">
-                    <span class="section-label">Get In Touch</span>
-                    <h2 class="section-title">Partner Inquiry</h2>
-                    <p class="section-subtitle mx-auto" style="color: rgba(255,255,255,0.6);">
-                        Fill out the form below and our team will reach out to discuss how we can work together.
-                    </p>
-                </div>
-
-                <div class="card-dark card-premium fade-in-up">
-                    <form>
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Temple / Organization Name *</label>
-                                <input type="text" class="form-control" placeholder="Enter temple name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Contact Person *</label>
-                                <input type="text" class="form-control" placeholder="Your full name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Email Address *</label>
-                                <input type="email" class="form-control" placeholder="your@email.com" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Phone Number *</label>
-                                <input type="tel" class="form-control" placeholder="+91 98765 43210" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Location (City, State) *</label>
-                                <input type="text" class="form-control" placeholder="Mumbai, Maharashtra" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Temple Type</label>
-                                <select class="form-control">
-                                    <option value="">Select type</option>
-                                    <option value="hindu">Hindu Temple</option>
-                                    <option value="jain">Jain Temple</option>
-                                    <option value="buddhist">Buddhist Shrine</option>
-                                    <option value="sikh">Gurudwara</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Tell Us About Your Temple</label>
-                                <textarea class="form-control" rows="4" placeholder="Share details about your temple's history, significance, and what you'd like to preserve..."></textarea>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label" style="color: rgba(255,255,255,0.7);">Services Interested In</label>
-                                <div class="row g-2">
-                                    <div class="col-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="service1" style="background-color: transparent; border-color: rgba(255,255,255,0.3);">
-                                            <label class="form-check-label" for="service1" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">360° Documentation</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="service2" style="background-color: transparent; border-color: rgba(255,255,255,0.3);">
-                                            <label class="form-check-label" for="service2" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">VR Experience</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="service3" style="background-color: transparent; border-color: rgba(255,255,255,0.3);">
-                                            <label class="form-check-label" for="service3" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Ritual Recording</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="service4" style="background-color: transparent; border-color: rgba(255,255,255,0.3);">
-                                            <label class="form-check-label" for="service4" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Drone Filming</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="service5" style="background-color: transparent; border-color: rgba(255,255,255,0.3);">
-                                            <label class="form-check-label" for="service5" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Story Documentation</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="service6" style="background-color: transparent; border-color: rgba(255,255,255,0.3);">
-                                            <label class="form-check-label" for="service6" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Complete Package</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center mt-2">
-                                <button type="submit" class="btn btn-primary btn-lg">Submit Inquiry</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<?php include 'includes/footer.php'; ?>
+<?php require __DIR__ . '/includes/page-footer.php'; ?>
