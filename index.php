@@ -825,6 +825,7 @@
             </a>
 
             <nav class="site-nav" aria-label="Primary navigation">
+                <a class="<?= pageNavClass('home', $activePage) ?>" href="index.php" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Home</a>
                 <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php" <?= $activePage === 'experience' ? 'aria-current="page"' : '' ?>>Experience</a>
                 <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php" <?= $activePage === 'timeline' ? 'aria-current="page"' : '' ?>>Timeline</a>
                 <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php" <?= $activePage === 'partner' ? 'aria-current="page"' : '' ?>>Partners</a>
@@ -841,6 +842,7 @@
         </div>
 
         <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden>
+            <a class="<?= pageNavClass('home', $activePage) ?>" href="index.php">Home</a>
             <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php">Experience</a>
             <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php">Timeline</a>
             <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php">Partners</a>

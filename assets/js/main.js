@@ -2,7 +2,7 @@
    TEERTHA - Main JavaScript
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // ============================================
     // NAVBAR SCROLL EFFECT
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', toggleBackToTop);
 
-    backToTop.addEventListener('click', function(e) {
+    backToTop.addEventListener('click', function (e) {
         e.preventDefault();
         window.scrollTo({
             top: 0,
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // SMOOTH SCROLL FOR ANCHOR LINKS
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href !== '#') {
                 const target = document.querySelector(href);
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const forms = document.querySelectorAll('form');
 
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const requiredFields = form.querySelectorAll('[required]');
@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const magneticButtons = document.querySelectorAll('.btn-primary, .btn-outline-light');
 
     magneticButtons.forEach(btn => {
-        btn.addEventListener('mousemove', function(e) {
+        btn.addEventListener('mousemove', function (e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
         });
 
-        btn.addEventListener('mouseleave', function() {
+        btn.addEventListener('mouseleave', function () {
             this.style.transform = 'translate(0, 0)';
         });
     });
