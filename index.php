@@ -807,7 +807,7 @@
 
 <body
     class="loading-active bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
-    <?php require __DIR__ . '/includes/loader.php'; ?>
+    <?php require __DIR__ . '/includes/main-loader.php'; ?>
     <?php
     $activePage = 'home';
     if (!function_exists('pageNavClass')) {
