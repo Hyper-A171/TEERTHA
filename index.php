@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>TEERTHA — Experience India's Sacred Heritage</title>
     <meta name="description"
-        content="Discover India's sacred temples through immersive Virtual Reality, 360° cinematography, and authentic storytelling. Teertha by Atreal Studios preserves spiritual heritage for generations.">
+        content="Discover India's sacred temples through immersive digital preservation, architectural recording, and authentic storytelling. Teertha by Atreal Studios preserves spiritual heritage for generations.">
     <meta name="theme-color" content="#a63b00">
     <link rel="stylesheet" href="assets/css/tailwind.css">
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -1025,7 +1025,7 @@
                 </div>
             </div>
 
-            <!-- Slide 02: Cinematic Capture -->
+            <!-- Slide 02: Cinematic Documentation -->
             <div
                 class="slide flex-shrink-0 w-screen h-full flex flex-col items-center justify-center relative px-12 md:px-24">
                 <div
@@ -1038,8 +1038,8 @@
                         </h2>
                         <div class="w-16 h-[2px] bg-temple-gold mx-auto"></div>
                         <p class="font-body-lg text-secondary leading-relaxed max-w-2xl mx-auto slide-2-desc">
-                            Every temple is digitally preserved with immersive 360° cinematography and aerial drone
-                            capture.
+                            Every temple is digitally preserved with high-resolution architectural recording and precision drone
+                            imaging.
                         </p>
                     </div>
                     <!-- Feature cards — row below the heading -->
@@ -1052,10 +1052,10 @@
                                     class="material-symbols-outlined text-xl text-temple-gold group-hover:scale-110 transition-transform">videocam</span>
                             </div>
                             <div>
-                                <h3 class="text-sm md:text-base font-semibold mb-0.5 font-display text-on-surface">360°
-                                    Cinematography</h3>
+                                <h3 class="text-sm md:text-base font-semibold mb-0.5 font-display text-on-surface">Heritage
+                                    Documentation</h3>
                                 <p class="text-secondary text-xs md:text-sm leading-relaxed hidden md:block">Precision
-                                    360°
+                                    architectural
                                     documentation.</p>
                             </div>
                         </div>
@@ -1259,9 +1259,9 @@
                         <div
                             class="flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:-translate-y-1">
                             <span
-                                class="material-symbols-outlined text-2xl md:text-3xl text-temple-gold">videocam</span>
-                            <span class="font-label-md text-xs uppercase tracking-widest text-on-surface">360°
-                                Video</span>
+                                class="material-symbols-outlined text-2xl md:text-3xl text-temple-gold">architecture</span>
+                            <span class="font-label-md text-xs uppercase tracking-widest text-on-surface">Heritage
+                                Recording</span>
                         </div>
                         <div
                             class="flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:-translate-y-1">
@@ -1271,9 +1271,9 @@
                         </div>
                         <div
                             class="flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:-translate-y-1">
-                            <span class="material-symbols-outlined text-2xl md:text-3xl text-temple-gold">devices</span>
-                            <span class="font-label-md text-xs uppercase tracking-widest text-on-surface">VR
-                                Headsets</span>
+                            <span class="material-symbols-outlined text-2xl md:text-3xl text-temple-gold">museum</span>
+                            <span class="font-label-md text-xs uppercase tracking-widest text-on-surface">Digital
+                                Archives</span>
                         </div>
                         <div
                             class="flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:-translate-y-1">
@@ -1365,7 +1365,7 @@
                     <!-- Main image -->
                     <div class="relative z-10 w-full rounded-[2rem] overflow-hidden shadow-2xl"
                         style="border: 1.5px solid rgba(212,175,55,0.35);">
-                        <img class="w-full h-auto object-cover aspect-square" alt="Holographic temple VR view"
+                        <img class="w-full h-auto object-cover aspect-square" alt="Sacred heritage preservation view"
                             src="assets/images/temple-prayer-interior.jpg" style="display: block;">
                         <!-- Cinematic inner vignette -->
                         <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 55%, rgba(30,15,5,0.45) 100%),
@@ -1382,7 +1382,7 @@
                         <div>
                             <div class="text-[10px] text-secondary uppercase tracking-[0.22em] font-bold">Cinematic
                                 Quality</div>
-                            <div class="text-sm font-semibold text-on-surface mt-0.5">4K · 360° · Spatial Audio</div>
+                            <div class="text-sm font-semibold text-on-surface mt-0.5">4K · Architectural · Spatial Audio</div>
                         </div>
                     </div>
 
@@ -1512,7 +1512,7 @@
                 <div class="space-y-2" style="transition-delay: 0.1s;">
                     <div class="font-cinzel text-5xl font-bold text-primary leading-none">100+</div>
                     <div class="w-8 h-[2px] bg-temple-gold mx-auto"></div>
-                    <div class="font-label-md text-xs text-secondary uppercase tracking-widest">VR Experiences</div>
+                    <div class="font-label-md text-xs text-secondary uppercase tracking-widest">Digital Experiences</div>
                 </div>
                 <div class="space-y-2" style="transition-delay: 0.2s;">
                     <div class="font-cinzel text-5xl font-bold text-primary leading-none">50K+</div>
@@ -1530,15 +1530,15 @@
     </section> -->
     <!-- Statistics Section -->
     <!-- <section class="py-20 bg-surface-container-high">
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-outline-variant/30">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop"> -->
+    <!-- <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-outline-variant/30">
                 <div class="space-y-2">
                     <div class="font-display-lg text-[48px] font-bold text-primary mb-2">500+</div>
                     <div class="font-label-md text-label-md text-on-surface-variant">Heritage Locations</div>
                 </div>
                 <div class="space-y-2" style="transition-delay: 0.1s;">
                     <div class="font-display-lg text-[48px] font-bold text-primary mb-2">100+</div>
-                    <div class="font-label-md text-label-md text-on-surface-variant">VR Experiences</div>
+                    <div class="font-label-md text-label-md text-on-surface-variant">Digital Experiences</div>
                 </div>
                 <div class="space-y-2" style="transition-delay: 0.2s;">
                     <div class="font-display-lg text-[48px] font-bold text-primary mb-2">50K+</div>
@@ -1643,13 +1643,13 @@
                     <div
                         class="w-14 h-14 rounded-2xl bg-primary text-white flex flex-col items-center justify-center shadow-lg shadow-primary/20">
                         <span class="material-symbols-outlined text-2xl"
-                            style="font-variation-settings: 'FILL' 1;">vrpano</span>
+                            style="font-variation-settings: 'FILL' 1;">explore</span>
                     </div>
                     <div class="space-y-1">
                         <div class="text-xs text-primary uppercase tracking-widest font-bold">Step 02</div>
                         <h3 class="font-headline-sm text-[18px] font-semibold text-on-surface">Experience</h3>
                     </div>
-                    <p class="font-body-md text-sm text-secondary">Immerse yourself in a cinematic 360° spiritual
+                    <p class="font-body-md text-sm text-secondary">Immerse yourself in an immersive heritage spiritual
                         journey from anywhere.</p>
                 </div>
                 <!-- Step 3 -->
@@ -1718,7 +1718,7 @@
                         </li>
                         <li class="flex items-center gap-3 text-sm text-on-surface font-semibold">
                             <span class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-temple-gold"></span>
-                            <span>360° Cinematic Filmmaking</span>
+                            <span>Immersive Heritage Storytelling</span>
                         </li>
                         <li class="flex items-center gap-3 text-sm text-on-surface font-semibold">
                             <span class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-temple-gold"></span>

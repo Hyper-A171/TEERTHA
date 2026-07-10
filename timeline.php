@@ -48,8 +48,8 @@ require __DIR__ . '/includes/page-header.php';
                 <article class="timeline-item">
                     <div class="timeline-item__marker">03</div>
                     <div class="timeline-item__phase">Documentation</div>
-                    <h2>Capture the Temple</h2>
-                    <p>360° cinematography, photography, spatial audio, drone imaging, and architectural recording preserve the visible and audible place.</p>
+                    <h2>Document the Temple</h2>
+                    <p>Heritage documentation, architectural recording, spatial audio, precision drone imaging, and cultural archiving preserve the visible and audible place.</p>
                 </article>
 
                 <article class="timeline-item">
@@ -84,9 +84,9 @@ require __DIR__ . '/includes/page-header.php';
                     <p>Meet the temple and the questions that open its story.</p>
                 </article>
                 <article class="step-card">
-                    <span class="material-symbols-outlined" aria-hidden="true">vrpano</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">explore</span>
                     <h3>Experience</h3>
-                    <p>Enter a cinematic 360° journey from wherever you are.</p>
+                    <p>Enter a cinematic immersive heritage journey from wherever you are.</p>
                 </article>
                 <article class="step-card">
                     <span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 $pageTitle = 'Experience';
-$pageDescription = "Enter India's sacred spaces through immersive 360-degree stories, spatial sound, and respectful digital preservation.";
+$pageDescription = "Enter India's sacred spaces through immersive heritage storytelling, spatial sound, and respectful digital preservation.";
 $activePage = 'experience';
 
 require __DIR__ . '/includes/page-header.php';
@@ -59,14 +59,14 @@ require __DIR__ . '/includes/page-header.php';
 
             <div class="card-grid">
                 <article class="info-card">
-                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">360</span></div>
-                    <h3>360° Cinematography</h3>
+                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">architecture</span></div>
+                    <h3>Heritage Documentation</h3>
                     <p>Look around sacred courtyards, carved corridors, and ritual spaces with cinematic clarity.</p>
                 </article>
                 <article class="info-card">
-                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">view_in_ar</span></div>
-                    <h3>Virtual Presence</h3>
-                    <p>Experience scale, distance, and spatial detail through VR and interactive environments.</p>
+                    <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">public</span></div>
+                    <h3>Digital Presence</h3>
+                    <p>Experience scale, distance, and spatial detail through high-resolution mapping and digital environments.</p>
                 </article>
                 <article class="info-card">
                     <div class="info-card__icon"><span class="material-symbols-outlined" aria-hidden="true">surround_sound</span></div>

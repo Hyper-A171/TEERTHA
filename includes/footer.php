@@ -39,8 +39,8 @@
                 <div class="col-lg-2 col-md-6">
                     <h5 class="footer-heading">Experiences</h5>
                     <ul class="footer-links">
-                        <li><a href="#">360° Temple Tours</a></li>
-                        <li><a href="#">VR Experiences</a></li>
+                        <li><a href="#">Heritage Documentation</a></li>
+                        <li><a href="#">Digital Preservation</a></li>
                         <li><a href="#">Sacred Stories</a></li>
                         <li><a href="#">Aarti & Rituals</a></li>
                         <li><a href="#">Architecture</a></li>
