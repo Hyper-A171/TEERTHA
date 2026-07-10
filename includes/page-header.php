@@ -25,7 +25,7 @@ function pageNavClass(string $page, string $activePage): string
     <link rel="stylesheet" href="assets/css/loader.css">
     <link rel="stylesheet" href="assets/css/theme-pages.css">
 </head>
-<body class="theme-page loading-active">
+<body class="theme-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header" id="site-header">

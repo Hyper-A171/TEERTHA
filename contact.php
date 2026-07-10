@@ -17,7 +17,7 @@ require __DIR__ . '/includes/page-header.php';
             <p>Speak with us about a temple, an immersive experience, heritage research, or a collaboration that deserves thoughtful attention.</p>
             <div class="hero-actions">
                 <a class="button button--primary" href="#contact-form">Send an Inquiry</a>
-                <a class="button button--light" href="mailto:info@atreal.in">Email Directly</a>
+                <a class="button button--light" href="mailto:info@atreral.in">Email Directly</a>
             </div>
         </div>
     </section>
@@ -34,7 +34,7 @@ require __DIR__ . '/includes/page-header.php';
                 <div class="contact-stack">
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-                        <div><strong>General Inquiries</strong><a href="mailto:info@atreal.in">info@atreal.in</a></div>
+                        <div><strong>General Inquiries</strong><a href="mailto:info@atreral.in">info@atreral.in</a></div>
                     </div>
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">handshake</span>
@@ -53,8 +53,14 @@ require __DIR__ . '/includes/page-header.php';
 
             <div class="form-panel">
                 <h2>Send an Inquiry</h2>
-                <p>This form prepares a message in your default email application.</p>
-                <form class="form-grid" action="mailto:info@atreal.in" method="post" enctype="text/plain">
+                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                    <p style="color: #4CAF50; font-weight: 600; margin-bottom: 1rem;">Thank you! Your message has been sent successfully. We will get back to you soon.</p>
+                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+                    <p style="color: #F44336; font-weight: 600; margin-bottom: 1rem;">There was a problem sending your message. Please try again or email us directly.</p>
+                <?php else: ?>
+                    <p>Complete the form below to send us a direct message.</p>
+                <?php endif; ?>
+                <form class="form-grid" action="send-email.php" method="post">
                     <div class="form-field">
                         <label for="contact-name">Your name</label>
                         <input id="contact-name" name="Name" type="text" autocomplete="name" required>
@@ -65,7 +71,7 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
                     <div class="form-field form-field--full">
                         <label for="inquiry-type">Inquiry type</label>
-                        <select id="inquiry-type" name="Inquiry type" required>
+                        <select id="inquiry-type" name="Inquiry_type" required>
                             <option value="">Select a topic</option>
                             <option>Experience access</option>
                             <option>Temple or cultural partnership</option>
@@ -83,10 +89,10 @@ require __DIR__ . '/includes/page-header.php';
                         <textarea id="contact-message" name="Message" required></textarea>
                     </div>
                     <div class="form-field form-field--full">
-                        <button class="button button--primary" type="submit">Open Email Message</button>
+                        <button class="button button--primary" type="submit">Send Message</button>
                     </div>
                 </form>
-                <p class="form-note">No form data is stored on this website. You can also write directly to info@atreal.in.</p>
+                <p class="form-note">Your message will be sent directly to our team. You can also write directly to info@atreral.in.</p>
             </div>
         </div>
     </section>
