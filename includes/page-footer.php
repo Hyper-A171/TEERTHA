@@ -21,7 +21,7 @@
                     <a href="mailto:info@atreal.in">info@atreal.in</a>
                     <a href="mailto:partner@atreal.in">partner@atreal.in</a>
                     <span>+91 70306 03067</span>
-                    <span>Mumbai, Maharashtra, India</span>
+                    <span>Virar, Maharashtra, India</span>
                 </div>
             </div>
         </div>

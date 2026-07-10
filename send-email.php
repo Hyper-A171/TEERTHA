@@ -12,9 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inquiryType = strip_tags(trim($_POST["Inquiry_type"] ?? ''));
     $subject = strip_tags(trim($_POST["Subject"] ?? ''));
     $message = trim($_POST["Message"] ?? '');
+    $organisation = strip_tags(trim($_POST["Organisation"] ?? ''));
+    $role = strip_tags(trim($_POST["Role"] ?? ''));
+    $redirectTo = strip_tags(trim($_POST["redirect_to"] ?? 'contact.php'));
+    $formAnchor = ($redirectTo === 'partner.php') ? '#partner-inquiry' : '#contact-form';
 
     if (empty($name) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: contact.php?status=error");
+        header("Location: {$redirectTo}?status=error{$formAnchor}");
         exit;
     }
 
@@ -50,16 +54,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $email_content = "Name: $name\n";
         $email_content .= "Email: $email\n";
+        if (!empty($organisation)) $email_content .= "Organisation: $organisation\n";
+        if (!empty($role)) $email_content .= "Role: $role\n";
         $email_content .= "Inquiry Type: $inquiryType\n\n";
         $email_content .= "Message:\n$message\n";
         
         $mail->Body    = $email_content;
 
         $mail->send();
-        header("Location: contact.php?status=success#contact-form");
+
+        // 2. Send Auto-Responder "Thank You" email to the user
+        $mail->clearAllRecipients();
+        $mail->clearReplyTos();
+        
+        $mail->setFrom($smtpUser, 'TEERTHA');
+        $mail->addAddress($email, $name);
+        $mail->addReplyTo($recipient, 'TEERTHA Support');
+        
+        $mail->Subject = "Thank you for contacting TEERTHA";
+        
+        $auto_reply = "Dear $name,\n\n";
+        $auto_reply .= "Thank you for reaching out to TEERTHA. We have successfully received your inquiry regarding \"$inquiryType\".\n\n";
+        $auto_reply .= "Our team will review your message and get back to you as soon as possible.\n\n";
+        $auto_reply .= "Best regards,\n";
+        $auto_reply .= "The TEERTHA Team\n";
+        
+        $mail->Body = $auto_reply;
+        
+        try {
+            $mail->send();
+        } catch (Exception $e) {
+            // Ignore auto-responder failure so the user still sees the success message for the main inquiry
+        }
+
+        header("Location: {$redirectTo}?status=success{$formAnchor}");
     } catch (Exception $e) {
         // You can log $mail->ErrorInfo here if needed
-        header("Location: contact.php?status=error#contact-form");
+        header("Location: {$redirectTo}?status=error{$formAnchor}");
     }
 } else {
     header("Location: contact.php");

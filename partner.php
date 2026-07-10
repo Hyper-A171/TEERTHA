@@ -101,15 +101,23 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
-                        <div><strong>Studio</strong><span>Mumbai, Maharashtra, India</span></div>
+                        <div><strong>Studio</strong><span>Virar, Maharashtra, India</span></div>
                     </div>
                 </div>
             </div>
 
             <div class="form-panel">
                 <h2>Partnership Inquiry</h2>
-                <p>Provide a short overview and we can begin with the right context.</p>
-                <form class="form-grid" action="mailto:partner@teertha.com" method="post" enctype="text/plain">
+                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                    <p style="color: #4CAF50; font-weight: 600; margin-bottom: 1rem;">Thank you! Your partnership inquiry has been sent successfully. We will be in touch soon.</p>
+                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+                    <p style="color: #F44336; font-weight: 600; margin-bottom: 1rem;">There was a problem sending your message. Please try again or email us directly.</p>
+                <?php else: ?>
+                    <p>Provide a short overview and we can begin with the right context.</p>
+                <?php endif; ?>
+                <form class="form-grid" action="send-email.php" method="post">
+                    <input type="hidden" name="redirect_to" value="partner.php">
+                    <input type="hidden" name="Subject" value="Partnership Inquiry via Website">
                     <div class="form-field">
                         <label for="partner-name">Your name</label>
                         <input id="partner-name" name="Name" type="text" autocomplete="name" required>
@@ -128,7 +136,7 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
                     <div class="form-field form-field--full">
                         <label for="partner-interest">Partnership interest</label>
-                        <select id="partner-interest" name="Interest" required>
+                        <select id="partner-interest" name="Inquiry_type" required>
                             <option value="">Select an area</option>
                             <option>Temple documentation</option>
                             <option>Virtual experience</option>
@@ -139,13 +147,13 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
                     <div class="form-field form-field--full">
                         <label for="partner-message">Tell us about the project</label>
-                        <textarea id="partner-message" name="Project overview" required></textarea>
+                        <textarea id="partner-message" name="Message" required></textarea>
                     </div>
                     <div class="form-field form-field--full">
-                        <button class="button button--primary" type="submit">Open Partnership Email</button>
+                        <button class="button button--primary" type="submit">Send Inquiry</button>
                     </div>
                 </form>
-                <p class="form-note">Submitting opens your default email application; no information is stored on this website.</p>
+                <p class="form-note">Your message will be sent directly to our partnerships team. You can also write directly to partner@teertha.com.</p>
             </div>
         </div>
     </section>

@@ -61,7 +61,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="bi bi-geo-alt"></i>
-                            <span>Mumbai, Maharashtra, India</span>
+                            <span>Virar, Maharashtra, India</span>
                         </div>
                     </div>
                 </div>

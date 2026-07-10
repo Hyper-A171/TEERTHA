@@ -46,7 +46,7 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
-                        <div><strong>Studio</strong><span>Mumbai, Maharashtra, India</span></div>
+                        <div><strong>Studio</strong><span>Virar, Maharashtra, India</span></div>
                     </div>
                 </div>
             </div>
