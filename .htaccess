@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Optional: Set the RewriteBase if your site is not in the root directory.
+    # Since you are in /TEERTHA/, you may need this uncommented if routing gets confused.
+    RewriteBase /TEERTHA/
+
+    # 1. Externally redirect direct requests for .php files to extensionless URLs
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+    RewriteRule ^ %1 [R=301,L,NE]
+
+    # 2. Internally route extensionless URLs to the corresponding .php files
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*?)/?$ $1.php [L]
+</IfModule>
+
+# Prevent directory browsing (security)
+Options -Indexes
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+<IfModule mod_headers.c>
+    # Security Headers
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>

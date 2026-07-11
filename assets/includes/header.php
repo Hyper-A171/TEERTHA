@@ -31,7 +31,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.php">
+            <a class="navbar-brand d-flex align-items-center" href="index">
                 <img src="assets/images/logo.png" alt="TEERTHA Logo" style="height: 60px; width: auto;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,28 +40,28 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'index' ? 'active' : ''; ?>" href="index.php">Home</a>
+                        <a class="nav-link <?php echo $current_page == 'index' ? 'active' : ''; ?>" href="index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'about' ? 'active' : ''; ?>" href="about.php">About</a>
+                        <a class="nav-link <?php echo $current_page == 'about' ? 'active' : ''; ?>" href="about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'experience' ? 'active' : ''; ?>" href="experience.php">Experience</a>
+                        <a class="nav-link <?php echo $current_page == 'experience' ? 'active' : ''; ?>" href="experience">Experience</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'technology' ? 'active' : ''; ?>" href="technology.php">Technology</a>
+                        <a class="nav-link <?php echo $current_page == 'technology' ? 'active' : ''; ?>" href="technology">Technology</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'how-it-works' ? 'active' : ''; ?>" href="how-it-works.php">How It Works</a>
+                        <a class="nav-link <?php echo $current_page == 'how-it-works' ? 'active' : ''; ?>" href="how-it-works">How It Works</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'partner' ? 'active' : ''; ?>" href="partner.php">Partner</a>
+                        <a class="nav-link <?php echo $current_page == 'partner' ? 'active' : ''; ?>" href="partner">Partner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $current_page == 'contact' ? 'active' : ''; ?>" href="contact.php">Contact</a>
+                        <a class="nav-link <?php echo $current_page == 'contact' ? 'active' : ''; ?>" href="contact">Contact</a>
                     </li>
                 </ul>
-                <a href="experience.php" class="btn btn-primary btn-nav">Experience Teertha</a>
+                <a href="experience" class="btn btn-primary btn-nav">Experience Teertha</a>
             </div>
         </div>
     </nav>

@@ -17,7 +17,7 @@ require __DIR__ . '/includes/page-header.php';
             <p>Walk through architecture, ritual, legend, and living memory in experiences created with cultural care and cinematic depth.</p>
             <div class="hero-actions">
                 <a class="button button--primary" href="#experience-formats">Explore Experiences</a>
-                <a class="button button--light" href="timeline.php">See the Journey</a>
+                <a class="button button--light" href="timeline">See the Journey</a>
             </div>
         </div>
     </section>
@@ -95,8 +95,8 @@ require __DIR__ . '/includes/page-header.php';
                         <div class="metric"><strong>Accessible</strong><span>Designed for global reach</span></div>
                     </div>
                     <div class="hero-actions">
-                        <a class="button button--primary" href="contact.php">Request Access</a>
-                        <a class="button button--light" href="partner.php">Create an Experience</a>
+                        <a class="button button--primary" href="contact">Request Access</a>
+                        <a class="button button--light" href="partner">Create an Experience</a>
                     </div>
                 </div>
             </article>

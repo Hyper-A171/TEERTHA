@@ -819,21 +819,21 @@
     <link rel="stylesheet" href="assets/css/theme-pages.css">
     <header class="site-header" id="site-header">
         <div class="site-header__inner">
-            <a class="site-brand" href="index.php" aria-label="TEERTHA home">
+            <a class="site-brand" href="index" aria-label="TEERTHA home">
                 <img src="assets/images/logo.png" alt="" aria-hidden="true">
                 <span>TEERTHA</span>
             </a>
 
             <nav class="site-nav" aria-label="Primary navigation">
-                <a class="<?= pageNavClass('home', $activePage) ?>" href="index.php" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Home</a>
-                <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php" <?= $activePage === 'experience' ? 'aria-current="page"' : '' ?>>Experience</a>
-                <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php" <?= $activePage === 'timeline' ? 'aria-current="page"' : '' ?>>Timeline</a>
-                <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php" <?= $activePage === 'partner' ? 'aria-current="page"' : '' ?>>Partners</a>
-                <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog.php" <?= $activePage === 'blog' ? 'aria-current="page"' : '' ?>>Blog</a>
-                <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact.php" <?= $activePage === 'contact' ? 'aria-current="page"' : '' ?>>Contact</a>
+                <a class="<?= pageNavClass('home', $activePage) ?>" href="index" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Home</a>
+                <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience" <?= $activePage === 'experience' ? 'aria-current="page"' : '' ?>>Experience</a>
+                <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline" <?= $activePage === 'timeline' ? 'aria-current="page"' : '' ?>>Timeline</a>
+                <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner" <?= $activePage === 'partner' ? 'aria-current="page"' : '' ?>>Partners</a>
+                <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog" <?= $activePage === 'blog' ? 'aria-current="page"' : '' ?>>Blog</a>
+                <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact" <?= $activePage === 'contact' ? 'aria-current="page"' : '' ?>>Contact</a>
             </nav>
 
-            <a class="button button--primary site-header__cta" href="partner.php">Partner With Us</a>
+            <a class="button button--primary site-header__cta" href="partner">Partner With Us</a>
 
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation">
                 <span></span>
@@ -843,13 +843,13 @@
         </div>
 
         <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden>
-            <a class="<?= pageNavClass('home', $activePage) ?>" href="index.php">Home</a>
-            <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php">Experience</a>
-            <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php">Timeline</a>
-            <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php">Partners</a>
-            <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog.php">Blog</a>
-            <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact.php">Contact</a>
-            <a class="button button--primary" href="partner.php">Partner With Us</a>
+            <a class="<?= pageNavClass('home', $activePage) ?>" href="index">Home</a>
+            <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience">Experience</a>
+            <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline">Timeline</a>
+            <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner">Partners</a>
+            <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog">Blog</a>
+            <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact">Contact</a>
+            <a class="button button--primary" href="partner">Partner With Us</a>
         </nav>
     </header>
     <script src="assets/js/theme-pages.js" defer></script>
@@ -901,11 +901,11 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-wrap justify-center gap-4 pt-4">
-                    <a href="experience.php"
+                    <a href="experience"
                         class="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-full font-label-md text-xs tracking-widest uppercase hover:scale-105 transition-all shadow-lg font-bold">
                         Explore Experiences
                     </a>
-                    <a href="partner.php"
+                    <a href="partner"
                         class="border border-white/30 hover:border-white/60 text-white px-8 py-3.5 rounded-full font-label-md text-xs tracking-widest uppercase hover:bg-white/10 transition-all font-bold">
                         Partner With Us
                     </a>
@@ -1833,11 +1833,11 @@
             </div>
 
             <div class="pt-2 flex flex-wrap justify-center gap-4">
-                <a href="partner.php"
+                <a href="partner"
                     class="bg-primary hover:bg-primary/95 text-white px-8 py-4 rounded-full font-label-md text-xs tracking-widest uppercase hover:scale-105 transition-all shadow-xl font-bold">
                     Partner With Us
                 </a>
-                <a href="contact.php"
+                <a href="contact"
                     class="border border-white/30 hover:border-white/60 text-white px-8 py-4 rounded-full font-label-md text-xs tracking-widest uppercase hover:bg-white/10 transition-all font-bold">
                     Learn More
                 </a>
@@ -1883,11 +1883,11 @@
                         <a class="font-body-md text-sm text-secondary hover:text-primary transition-all" href="index.php#purpose-section">About
                             Teertha</a>
                         <a class="font-body-md text-sm text-secondary hover:text-primary transition-all"
-                            href="experience.php">Heritage Preservation</a>
+                            href="experience">Heritage Preservation</a>
                         <a class="font-body-md text-sm text-secondary hover:text-primary transition-all"
-                            href="partner.php">Partner With Us</a>
+                            href="partner">Partner With Us</a>
                         <a class="font-body-md text-sm text-secondary hover:text-primary transition-all"
-                            href="contact.php">Contact Us</a>
+                            href="contact">Contact Us</a>
                     </div>
                 </div>
                 <div class="md:col-span-4">

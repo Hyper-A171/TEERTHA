@@ -77,21 +77,21 @@ function pageNavClass(string $page, string $activePage): string
 
     <header class="site-header" id="site-header">
         <div class="site-header__inner">
-            <a class="site-brand" href="index.php" aria-label="TEERTHA home">
+            <a class="site-brand" href="index" aria-label="TEERTHA home">
                 <img src="assets/images/logo.png" alt="" aria-hidden="true">
                 <span>TEERTHA</span>
             </a>
 
             <nav class="site-nav" aria-label="Primary navigation">
-                <a class="<?= pageNavClass('home', $activePage) ?>" href="index.php" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Home</a>
-                <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php" <?= $activePage === 'experience' ? 'aria-current="page"' : '' ?>>Experience</a>
-                <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php" <?= $activePage === 'timeline' ? 'aria-current="page"' : '' ?>>Timeline</a>
-                <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php" <?= $activePage === 'partner' ? 'aria-current="page"' : '' ?>>Partners</a>
-                <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog.php" <?= $activePage === 'blog' ? 'aria-current="page"' : '' ?>>Blog</a>
-                <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact.php" <?= $activePage === 'contact' ? 'aria-current="page"' : '' ?>>Contact</a>
+                <a class="<?= pageNavClass('home', $activePage) ?>" href="index" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Home</a>
+                <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience" <?= $activePage === 'experience' ? 'aria-current="page"' : '' ?>>Experience</a>
+                <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline" <?= $activePage === 'timeline' ? 'aria-current="page"' : '' ?>>Timeline</a>
+                <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner" <?= $activePage === 'partner' ? 'aria-current="page"' : '' ?>>Partners</a>
+                <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog" <?= $activePage === 'blog' ? 'aria-current="page"' : '' ?>>Blog</a>
+                <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact" <?= $activePage === 'contact' ? 'aria-current="page"' : '' ?>>Contact</a>
             </nav>
 
-            <a class="button button--primary site-header__cta" href="partner.php">Partner With Us</a>
+            <a class="button button--primary site-header__cta" href="partner">Partner With Us</a>
 
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation">
                 <span></span>
@@ -101,12 +101,12 @@ function pageNavClass(string $page, string $activePage): string
         </div>
 
         <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden>
-            <a class="<?= pageNavClass('home', $activePage) ?>" href="index.php">Home</a>
-            <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php">Experience</a>
-            <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php">Timeline</a>
-            <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php">Partners</a>
-            <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog.php">Blog</a>
-            <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact.php">Contact</a>
-            <a class="button button--primary" href="partner.php">Partner With Us</a>
+            <a class="<?= pageNavClass('home', $activePage) ?>" href="index">Home</a>
+            <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience">Experience</a>
+            <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline">Timeline</a>
+            <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner">Partners</a>
+            <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog">Blog</a>
+            <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact">Contact</a>
+            <a class="button button--primary" href="partner">Partner With Us</a>
         </nav>
     </header>

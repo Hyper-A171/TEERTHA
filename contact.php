@@ -99,8 +99,8 @@ require __DIR__ . '/includes/page-header.php';
                 <p>For heritage projects, include the site or organisation, your role, the kind of documentation you need, and any important cultural or access considerations.</p>
             </div>
             <div class="hero-actions">
-                <a class="button button--primary" href="partner.php">Partnership Details</a>
-                <a class="button button--light" href="timeline.php">View Our Process</a>
+                <a class="button button--primary" href="partner">Partnership Details</a>
+                <a class="button button--light" href="timeline">View Our Process</a>
             </div>
         </div>
     </section>

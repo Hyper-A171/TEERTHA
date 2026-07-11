@@ -8,7 +8,7 @@
                 <!-- Brand Column -->
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-brand">
-                        <a href="index.php" class="footer-logo">
+                        <a href="index" class="footer-logo">
                             <span class="brand-text">TEE<span class="brand-highlight">ऋ</span>THA</span>
                         </a>
                         <p class="footer-tagline">Preserving India's spiritual heritage through immersive storytelling and technology.</p>
@@ -25,13 +25,13 @@
                 <div class="col-lg-2 col-md-6">
                     <h5 class="footer-heading">Explore</h5>
                     <ul class="footer-links">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="experience.php">Experience</a></li>
-                        <li><a href="technology.php">Technology</a></li>
-                        <li><a href="how-it-works.php">How It Works</a></li>
-                        <li><a href="partner.php">Partner</a></li>
-                        <li><a href="contact.php">Contact</a></li>
+                        <li><a href="index">Home</a></li>
+                        <li><a href="about">About</a></li>
+                        <li><a href="experience">Experience</a></li>
+                        <li><a href="technology">Technology</a></li>
+                        <li><a href="how-it-works">How It Works</a></li>
+                        <li><a href="partner">Partner</a></li>
+                        <li><a href="contact">Contact</a></li>
                     </ul>
                 </div>
 

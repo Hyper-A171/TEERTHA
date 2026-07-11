@@ -1,7 +1,7 @@
     <footer class="site-footer">
         <div class="site-footer__inner">
             <div class="site-footer__brand">
-                <a class="footer-brand" href="index.php">
+                <a class="footer-brand" href="index">
                     <img src="assets/images/logo.png" alt="" aria-hidden="true">
                     <span>TEERTHA</span>
                 </a>
@@ -11,11 +11,11 @@
             <div class="site-footer__links">
                 <div>
                     <h2>Explore</h2>
-                    <a href="experience.php">Experience</a>
-                    <a href="timeline.php">Timeline</a>
-                    <a href="partner.php">Partners</a>
-                    <a href="blog.php">Blog</a>
-                    <a href="contact.php">Contact</a>
+                    <a href="experience">Experience</a>
+                    <a href="timeline">Timeline</a>
+                    <a href="partner">Partners</a>
+                    <a href="blog">Blog</a>
+                    <a href="contact">Contact</a>
                 </div>
                 <div> 
                     <h2>Connect</h2>
@@ -28,7 +28,7 @@
 
         <div class="site-footer__bottom">
             <p>&copy; <?= date('Y') ?> TEERTHA by Atreal Studios. All rights reserved.</p>
-            <a href="index.php">Return Home</a>
+            <a href="index">Return Home</a>
         </div>
     </footer>
 

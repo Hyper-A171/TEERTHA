@@ -17,7 +17,7 @@ require __DIR__ . '/includes/page-header.php';
             <p>Every project moves at the pace of trust: listening first, documenting responsibly, and building an experience that can endure.</p>
             <div class="hero-actions">
                 <a class="button button--primary" href="#project-timeline">Follow the Process</a>
-                <a class="button button--light" href="partner.php">Begin a Partnership</a>
+                <a class="button button--light" href="partner">Begin a Partnership</a>
             </div>
         </div>
     </section>
@@ -101,8 +101,8 @@ require __DIR__ . '/includes/page-header.php';
             </div>
 
             <div class="hero-actions">
-                <a class="button button--primary" href="experience.php">Explore the Experience</a>
-                <a class="button button--light" href="contact.php">Talk With Our Team</a>
+                <a class="button button--primary" href="experience">Explore the Experience</a>
+                <a class="button button--light" href="contact">Talk With Our Team</a>
             </div>
         </div>
     </section>
