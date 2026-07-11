@@ -7,7 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const is404Page = document.body.classList.contains('page-404');
 
         const handleScroll = () => {
-            const scrollThreshold = (isInnerPage || is404Page) ? 20 : (window.innerHeight - 100);
+            let scrollThreshold = 20;
+            
+            if (!isInnerPage && !is404Page) {
+                const heroSection = document.getElementById('hero-section');
+                if (heroSection) {
+                    // Trigger when the hero section scrolls past the header (80px tall)
+                    scrollThreshold = Math.max(20, heroSection.offsetHeight - 80);
+                } else {
+                    scrollThreshold = Math.max(20, window.innerHeight - 80);
+                }
+            }
 
             if (window.scrollY > scrollThreshold) {
                 header.classList.add('is-scrolled');
@@ -16,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
         handleScroll();
     }
 

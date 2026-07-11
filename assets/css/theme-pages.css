@@ -121,20 +121,10 @@ textarea {
     letter-spacing: 0.11em;
 }
 
-@keyframes header-logo-pulse {
-    0%, 100% {
-        transform: scale(0.95);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
 .site-brand img {
     width: 48px;
     height: 48px;
     object-fit: contain;
-    animation: header-logo-pulse 2s ease-in-out infinite;
 }
 
 .site-nav {

@@ -157,10 +157,8 @@ body.loading-active {
 @keyframes loader-glow {
     0%, 100% { 
         filter: drop-shadow(0 0 5px rgba(166, 59, 0, 0.15));
-        transform: scale(0.95);
     }
     50% { 
         filter: drop-shadow(0 0 25px rgba(166, 59, 0, 0.5));
-        transform: scale(1.1);
     }
 }
