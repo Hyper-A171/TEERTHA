@@ -7,14 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const is404Page = document.body.classList.contains('page-404');
 
         const handleScroll = () => {
-            // For inner pages, threshold is 20. 
+            // For inner pages and 404 page, threshold is 20. 
             // For homepage, it dynamically triggers right before the hero section ends.
-            // For 404 page, it's always -1 so it's always scrolled.
-            const scrollThreshold = is404Page ? -1 : (isInnerPage ? 20 : (window.innerHeight - 100));
+            const scrollThreshold = (isInnerPage || is404Page) ? 20 : (window.innerHeight - 100);
 
             if (window.scrollY > scrollThreshold) {
                 header.classList.add('is-scrolled');
-            } else {
+            } else if (is404Page) {
                 header.classList.remove('is-scrolled');
             }
         };
