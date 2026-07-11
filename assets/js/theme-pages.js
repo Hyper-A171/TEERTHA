@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleScroll = () => {
             // For inner pages, threshold is 20. 
             // For homepage, threshold is 1300 on desktop, but dynamically based on screen height on mobile.
-            const scrollThreshold = isInnerPage ? 20 : (window.innerWidth < 768 ? window.innerHeight * 0.8 : 1300);
+            const scrollThreshold = isInnerPage ? 20 : (window.innerWidth < 768 ? window.innerHeight * 0.8 : 1350);
 
             if (window.scrollY > scrollThreshold) {
                 header.classList.add('is-scrolled');
@@ -42,6 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileNav.removeAttribute('hidden');
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
             }
+        });
+
+        // Close mobile nav when a link is clicked
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.classList.remove('is-active');
+                mobileNav.setAttribute('hidden', '');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
         });
     }
 });

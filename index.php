@@ -1467,7 +1467,7 @@
                             </div>
                             <h4 class="purpose-card-title text-xs font-bold uppercase tracking-[0.22em] mb-2 text-on-surface">Vision</h4>
                             <p class="purpose-card-copy text-sm text-secondary leading-relaxed">
-                                To become the world's most trusted platform for experiencing spiritual heritage —
+                                To become the world's most trusted platform for experiencing spiritual heritage
                                 making every sacred destination accessible through innovation.
                             </p>
                         </div>

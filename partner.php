@@ -97,7 +97,7 @@ require __DIR__ . '/includes/page-header.php';
                 <div class="contact-stack">
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-                        <div><strong>Partnerships</strong><a href="mailto:partner@teertha.com">partner@teertha.com</a></div>
+                        <div><strong>Partnerships</strong><a href="mailto:info@atreal.in">info@atreal.in</a></div>
                     </div>
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
@@ -147,7 +147,7 @@ require __DIR__ . '/includes/page-header.php';
                         <button class="button button--primary" type="submit">Send Inquiry</button>
                     </div>
                 </form>
-                <p class="form-note">Your message will be sent directly to our partnerships team. You can also write directly to partner@teertha.com.</p>
+                <p class="form-note">Your message will be sent directly to our partnerships team. You can also write directly to info@atreal.in.</p>
             </div>
         </div>
     </section>
