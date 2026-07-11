@@ -1,6 +1,7 @@
 <?php
-$page_title = "404 - Page Not Found | TEERTHA";
-$page_description = "The page you are looking for does not exist.";
+$pageTitle = "404 - Page Not Found | TEERTHA";
+$pageDescription = "The page you are looking for does not exist.";
+$activePage = 'page-404';
 require_once 'includes/page-header.php';
 ?>
 

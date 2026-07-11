@@ -72,7 +72,7 @@ function pageNavClass(string $page, string $activePage): string
         });
     </script>
 </head>
-<body class="theme-page">
+<body class="theme-page <?= htmlspecialchars($activePage ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header" id="site-header">
