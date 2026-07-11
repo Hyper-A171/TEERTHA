@@ -40,6 +40,7 @@ function pageNavClass(string $page, string $activePage): string
                 <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php" <?= $activePage === 'experience' ? 'aria-current="page"' : '' ?>>Experience</a>
                 <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php" <?= $activePage === 'timeline' ? 'aria-current="page"' : '' ?>>Timeline</a>
                 <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php" <?= $activePage === 'partner' ? 'aria-current="page"' : '' ?>>Partners</a>
+                <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog.php" <?= $activePage === 'blog' ? 'aria-current="page"' : '' ?>>Blog</a>
                 <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact.php" <?= $activePage === 'contact' ? 'aria-current="page"' : '' ?>>Contact</a>
             </nav>
 
@@ -57,6 +58,7 @@ function pageNavClass(string $page, string $activePage): string
             <a class="<?= pageNavClass('experience', $activePage) ?>" href="experience.php">Experience</a>
             <a class="<?= pageNavClass('timeline', $activePage) ?>" href="timeline.php">Timeline</a>
             <a class="<?= pageNavClass('partner', $activePage) ?>" href="partner.php">Partners</a>
+            <a class="<?= pageNavClass('blog', $activePage) ?>" href="blog.php">Blog</a>
             <a class="<?= pageNavClass('contact', $activePage) ?>" href="contact.php">Contact</a>
             <a class="button button--primary" href="partner.php">Partner With Us</a>
         </nav>

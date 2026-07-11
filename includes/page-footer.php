@@ -14,6 +14,7 @@
                     <a href="experience.php">Experience</a>
                     <a href="timeline.php">Timeline</a>
                     <a href="partner.php">Partners</a>
+                    <a href="blog.php">Blog</a>
                     <a href="contact.php">Contact</a>
                 </div>
                 <div> 
