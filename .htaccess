@@ -1,18 +1,21 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Optional: Set the RewriteBase if your site is not in the root directory.
-    # Since you are in /TEERTHA/, you may need this uncommented if routing gets confused.
+    # Disable MultiViews to prevent conflicts with extensionless routing
+    Options -MultiViews -Indexes
+
+    # Set the base directory for the rules
     RewriteBase /TEERTHA/
 
     # 1. Externally redirect direct requests for .php files to extensionless URLs
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
-    RewriteRule ^ %1 [R=301,L,NE]
+    # (The REDIRECT_STATUS check prevents infinite loops with the rule below)
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule ^(.+)\.php$ $1 [R=301,L]
 
     # 2. Internally route extensionless URLs to the corresponding .php files
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^(.*?)/?$ $1.php [L]
+    RewriteRule ^(.*)$ $1.php [L]
 </IfModule>
 
 # Prevent directory browsing (security)
