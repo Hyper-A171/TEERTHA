@@ -137,7 +137,7 @@
         <div class="loader-logo-container">
             <img alt="TEERTHA Logo" class="loader-logo" src="assets/images/teertha-loader-logo.png" />
             <div class="loader-text-container">
-                <!-- <div class="loader-text-sanskrit">धर्मो रक्षति रक्षितः</div> -->
+                <div class="loader-text-sanskrit">धर्मो रक्षति रक्षितः</div>
                 <div class="loader-text-english">Dharma protects those who protect it</div>
             </div>
         </div>

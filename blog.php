@@ -69,8 +69,8 @@ require __DIR__ . '/includes/page-header.php';
                     </div>
 
                     <div style="border-top: 1px solid #e5e7eb; padding-top: 2rem; margin-top: 3rem; display: flex; align-items: center; gap: 1.25rem;">
-                        <div style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden; background: #f3f4f6; border: 1px solid #e5e7eb; flex-shrink: 0;">
-                            <img src="assets/images/founder.jpg" alt="Viral Jain" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.4s ease;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'" onerror="this.style.display='none'">
+                        <div style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden; background: #f3f4f6; border: 1px solid #e5e7eb; flex-shrink: 0; cursor: pointer;" onclick="openFounderModal()">
+                            <img src="assets/images/founder.jpg" alt="Viral Jain" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transform: scale(1); transition: filter 0.4s ease, transform 0.4s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.transform='scale(1.1)'" onmouseout="this.style.filter='grayscale(100%)'; this.style.transform='scale(1)'" ontouchstart="this.style.filter='grayscale(0%)'; this.style.transform='scale(1.1)'" ontouchend="this.style.filter='grayscale(100%)'; this.style.transform='scale(1)'" onerror="this.style.display='none'">
                             </div>
                         <div>
                             <p style="font-weight: 600; color: #1f2937; margin: 0 0 0.25rem 0; font-size: 1.1rem;">Viral Jain</p>
@@ -81,6 +81,55 @@ require __DIR__ . '/includes/page-header.php';
             </article>
         </div>
     </section>
+
+    <!-- Founder Image Modal -->
+    <div id="founderModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+        <div style="position: relative; max-width: 90%; max-height: 90%; background: #fff; padding: 6px; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <button onclick="closeFounderModal()" style="position: absolute; top: -45px; right: 0; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">&times;</button>
+            <img src="assets/images/founder.jpg" alt="Viral Jain" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; display: block;">
+        </div>
+    </div>
+
+    <script>
+        function openFounderModal() {
+            const modal = document.getElementById('founderModal');
+            const modalContent = modal.querySelector('div > div');
+            modal.style.display = 'flex';
+            
+            // Trigger reflow for transition
+            modal.offsetHeight;
+            
+            modal.style.opacity = '1';
+            if (modalContent) modalContent.style.transform = 'scale(1)';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFounderModal() {
+            const modal = document.getElementById('founderModal');
+            const modalContent = modal.querySelector('div > div');
+            modal.style.opacity = '0';
+            if (modalContent) modalContent.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Close on background click
+        document.getElementById('founderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFounderModal();
+            }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('founderModal').style.display === 'flex') {
+                closeFounderModal();
+            }
+        });
+    </script>
 </main>
 
 <?php require __DIR__ . '/includes/page-footer.php'; ?>
