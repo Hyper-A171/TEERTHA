@@ -12,9 +12,9 @@ require_once 'includes/page-header.php';
                 The path you are seeking remains hidden. 
                 <br>Let's guide you back to familiar grounds.
             </p>
-            <div class="hero-actions" style="justify-content: center;">
+            <div class="hero-actions" style="justify-content: center; display: flex; gap: 1rem;">
                 <a href="/" class="button button--primary">Return Home</a>
-                <a href="contact" class="button button--light">Contact Us</a>
+                <a href="contact" class="button button--outline">Contact Us</a>
             </div>
         </div>
     </section>
