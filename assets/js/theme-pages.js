@@ -56,6 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.overflow = ''; // Restore scrolling
             });
         });
+
+        // Automatically close mobile menu if screen is resized to desktop view
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && !mobileNav.hasAttribute('hidden')) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.classList.remove('is-active');
+                mobileNav.setAttribute('hidden', '');
+                document.body.style.overflow = '';
+            }
+        });
     }
 
     // --- Global Scroll Animations ---
