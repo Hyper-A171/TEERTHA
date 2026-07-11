@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const handleScroll = () => {
             // For inner pages, threshold is 20. 
-            // For homepage, threshold is 1300 on desktop, but dynamically based on screen height on mobile.
+            // For homepage, it dynamically triggers right before the hero section ends.
             // For 404 page, it's always -1 so it's always scrolled.
-            const scrollThreshold = is404Page ? -1 : (isInnerPage ? 20 : (window.innerWidth < 768 ? window.innerHeight * 0.8 : 1350));
+            const scrollThreshold = is404Page ? -1 : (isInnerPage ? 20 : (window.innerHeight - 100));
 
             if (window.scrollY > scrollThreshold) {
                 header.classList.add('is-scrolled');

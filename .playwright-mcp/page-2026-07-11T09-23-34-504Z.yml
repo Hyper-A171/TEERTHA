@@ -1,0 +1,195 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e6]:
+    - img "TEERTHA Logo" [ref=f3e7]
+    - generic [ref=f3e8]:
+      - generic [ref=f3e9]: धर्मो रक्षति रक्षितः
+      - generic [ref=f3e10]: Dharma protects those who protect it
+  - banner [ref=f3e19]:
+    - generic [ref=f3e20]:
+      - link "TEERTHA home" [ref=f3e21] [cursor=pointer]:
+        - /url: index
+        - generic [ref=f3e23]: TEERTHA
+      - link "Partner With Us" [ref=f3e24] [cursor=pointer]:
+        - /url: partner
+  - generic [ref=f3e25]:
+    - generic [ref=f3e27]:
+      - generic [ref=f3e28]: Digital Spiritual Heritage
+      - heading "TEERTHA" [level=1] [ref=f3e32]
+      - generic [ref=f3e33]: Every Temple Has a Story. Experience It.
+      - paragraph [ref=f3e34]: Discover India's sacred heritage through immersive storytelling, Virtual Reality, and authentic temple experiences crafted with reverence by Atreal Studios.
+      - generic [ref=f3e35]:
+        - link "Explore Experiences" [ref=f3e36] [cursor=pointer]:
+          - /url: experience
+        - link "Partner With Us" [ref=f3e37] [cursor=pointer]:
+          - /url: partner
+    - generic [ref=f3e38] [cursor=pointer]:
+      - generic [ref=f3e39]: Scroll
+      - generic [ref=f3e40]: keyboard_arrow_down
+  - generic [ref=f3e43]:
+    - generic [ref=f3e44]:
+      - generic [ref=f3e45]: Why It Matters
+      - heading "Every year, millions visit temples. Most leave with blessings." [level=2] [ref=f3e48]
+      - paragraph [ref=f3e49]:
+        - text: Very few leave knowing the incredible stories behind those sacred places.
+        - strong [ref=f3e50]: Teertha
+        - text: ensures those stories are never forgotten.
+    - img "Sacred Temple" [ref=f3e54]
+  - generic [ref=f3e55]: Technology
+  - generic [ref=f3e82]:
+    - generic [ref=f3e83]:
+      - img "Sacred heritage preservation view" [ref=f3e86]
+      - generic [ref=f3e87]:
+        - generic [ref=f3e88]: auto_awesome
+        - generic [ref=f3e89]:
+          - generic [ref=f3e90]: Cinematic Quality
+          - generic [ref=f3e91]: 4K · Architectural · Spatial Audio
+    - generic [ref=f3e92]:
+      - generic [ref=f3e93]: Purpose
+      - heading "Why We Exist" [level=2] [ref=f3e97]
+      - generic [ref=f3e101]:
+        - paragraph [ref=f3e102]: We believe every temple is more than a place of worship. It is a living story shaped by faith, history, rituals, architecture, and the devotion of countless generations.
+        - paragraph [ref=f3e103]: At Teertha, we are committed to preserving these stories with authenticity, ensuring that their spiritual and cultural significance continues to inspire people across the world.
+      - generic [ref=f3e104]:
+        - generic [ref=f3e105]:
+          - generic [ref=f3e106]: explore
+          - heading "Mission" [level=4] [ref=f3e108]
+          - paragraph [ref=f3e109]: To preserve, protect, and present India's spiritual heritage through immersive technology, ensuring sacred stories inspire every generation.
+        - generic [ref=f3e110]:
+          - generic [ref=f3e111]: visibility
+          - heading "Vision" [level=4] [ref=f3e113]
+          - paragraph [ref=f3e114]: To become the world's most trusted platform for experiencing spiritual heritage making every sacred destination accessible through innovation.
+      - generic [ref=f3e115]:
+        - button "play_circle Our Story" [ref=f3e116] [cursor=pointer]:
+          - generic [ref=f3e117]: play_circle
+          - text: Our Story
+        - link "Learn More arrow_forward" [ref=f3e118] [cursor=pointer]:
+          - /url: "#"
+          - text: Learn More
+          - generic [ref=f3e119]: arrow_forward
+  - generic [ref=f3e121]:
+    - generic [ref=f3e122]:
+      - generic [ref=f3e123]: Process
+      - heading "How It Works" [level=2] [ref=f3e124]
+      - paragraph [ref=f3e125]: A seamless journey from discovery to devotion, powered by technology and guided by tradition.
+    - generic [ref=f3e126]:
+      - generic [ref=f3e127]:
+        - generic [ref=f3e128]: search
+        - generic [ref=f3e130]:
+          - generic [ref=f3e131]: Step 01
+          - heading "Discover" [level=3] [ref=f3e132]
+        - paragraph [ref=f3e133]: Explore temples and learn their hidden stories before you step inside.
+      - generic [ref=f3e134]:
+        - generic [ref=f3e135]: explore
+        - generic [ref=f3e137]:
+          - generic [ref=f3e138]: Step 02
+          - heading "Experience" [level=3] [ref=f3e139]
+        - paragraph [ref=f3e140]: Immerse yourself in an immersive heritage spiritual journey from anywhere.
+      - generic [ref=f3e141]:
+        - generic [ref=f3e142]: auto_stories
+        - generic [ref=f3e144]:
+          - generic [ref=f3e145]: Step 03
+          - heading "Connect" [level=3] [ref=f3e146]
+        - paragraph [ref=f3e147]: Understand the stories, rituals, and traditions behind every sacred place.
+      - generic [ref=f3e148]:
+        - generic [ref=f3e149]: museum
+        - generic [ref=f3e151]:
+          - generic [ref=f3e152]: Step 04
+          - heading "Preserve" [level=3] [ref=f3e153]
+        - paragraph [ref=f3e154]: Help keep India's spiritual heritage alive for future generations.
+  - generic [ref=f3e157]:
+    - generic [ref=f3e158]:
+      - generic [ref=f3e159]: Why Teertha?
+      - heading "More Than Virtual Reality" [level=2] [ref=f3e160]
+      - paragraph [ref=f3e161]: Virtual Reality is only the medium. Our purpose is preserving faith, heritage, and culture.
+      - paragraph [ref=f3e162]: "Every experience is carefully crafted using:"
+      - list [ref=f3e163]:
+        - listitem [ref=f3e164]:
+          - generic [ref=f3e166]: Historical Research
+        - listitem [ref=f3e167]:
+          - generic [ref=f3e169]: Temple Traditions
+        - listitem [ref=f3e170]:
+          - generic [ref=f3e172]: Local Legends
+        - listitem [ref=f3e173]:
+          - generic [ref=f3e175]: Immersive Heritage Storytelling
+        - listitem [ref=f3e176]:
+          - generic [ref=f3e178]: Spatial Audio
+        - listitem [ref=f3e179]:
+          - generic [ref=f3e181]: Authentic Ritual Documentation
+        - listitem [ref=f3e182]:
+          - generic [ref=f3e184]: Immersive Storytelling
+    - generic [ref=f3e185]:
+      - generic [ref=f3e186]:
+        - generic [ref=f3e187]: Our Beliefs
+        - heading "Our Values" [level=3] [ref=f3e188]
+      - generic [ref=f3e189]:
+        - generic [ref=f3e190]:
+          - heading "Authenticity" [level=4] [ref=f3e191]
+          - paragraph [ref=f3e192]: Every story is verified with temple authorities and historical references.
+        - generic [ref=f3e193]:
+          - heading "Respect" [level=4] [ref=f3e194]
+          - paragraph [ref=f3e195]: Every tradition is documented with devotion and cultural sensitivity.
+        - generic [ref=f3e196]:
+          - heading "Preservation" [level=4] [ref=f3e197]
+          - paragraph [ref=f3e198]: We believe heritage should be preserved, not forgotten.
+        - generic [ref=f3e199]:
+          - heading "Innovation" [level=4] [ref=f3e200]
+          - paragraph [ref=f3e201]: Using modern technology to celebrate timeless traditions.
+  - generic [ref=f3e206]:
+    - generic [ref=f3e207]:
+      - generic [ref=f3e208]: For Temple Trusts
+      - heading "Preserve Your Legacy" [level=2] [ref=f3e211]
+    - paragraph [ref=f3e212]: Every temple has a story worth preserving. Partner with Teertha to document your temple's history, traditions, architecture, rituals, and festivals through immersive storytelling. Together, let's preserve our spiritual heritage for generations to come.
+    - generic [ref=f3e213]:
+      - generic [ref=f3e214]:
+        - generic [ref=f3e215]: verified
+        - text: Authenticity Verified
+      - generic [ref=f3e216]:
+        - generic [ref=f3e217]: history_edu
+        - text: Historically Accurate
+      - generic [ref=f3e218]:
+        - generic [ref=f3e219]: lock
+        - text: Culturally Sensitive
+    - generic [ref=f3e220]:
+      - link "Partner With Us" [ref=f3e221] [cursor=pointer]:
+        - /url: partner
+      - link "Learn More" [ref=f3e222] [cursor=pointer]:
+        - /url: contact
+  - contentinfo [ref=f3e223]:
+    - generic [ref=f3e224]:
+      - generic [ref=f3e225]:
+        - generic [ref=f3e226]:
+          - generic [ref=f3e227]: TEERTHA
+          - paragraph [ref=f3e230]: Bridging centuries of architectural brilliance with modern spatial computing to preserve India's sacred heritage.
+          - generic [ref=f3e231]:
+            - link "language" [ref=f3e232] [cursor=pointer]:
+              - /url: "#"
+            - link "mail" [ref=f3e234] [cursor=pointer]:
+              - /url: mailto:info@teertha.com
+            - link "share" [ref=f3e236] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=f3e238]:
+          - heading "Company" [level=4] [ref=f3e239]
+          - generic [ref=f3e240]:
+            - link "About Teertha" [ref=f3e241] [cursor=pointer]:
+              - /url: index.php#purpose-section
+            - link "Heritage Preservation" [ref=f3e242] [cursor=pointer]:
+              - /url: experience
+            - link "Partner With Us" [ref=f3e243] [cursor=pointer]:
+              - /url: partner
+            - link "Contact Us" [ref=f3e244] [cursor=pointer]:
+              - /url: contact
+        - generic [ref=f3e245]:
+          - heading "Stay Connected" [level=4] [ref=f3e246]
+          - paragraph [ref=f3e247]: Get updates on new temple experiences and heritage stories.
+          - generic [ref=f3e248]:
+            - textbox "Email Address" [ref=f3e249]:
+              - /placeholder: your@email.com
+            - button "Subscribe" [ref=f3e250] [cursor=pointer]:
+              - generic [ref=f3e251]: send
+      - generic [ref=f3e252]:
+        - generic [ref=f3e253]: © 2026 Teertha by Atreal Studios. All rights reserved.
+        - generic [ref=f3e254]:
+          - link "Privacy Policy" [ref=f3e255] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms of Service" [ref=f3e256] [cursor=pointer]:
+            - /url: "#"
