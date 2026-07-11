@@ -36,10 +36,7 @@ require __DIR__ . '/includes/page-header.php';
                         <span class="material-symbols-outlined" aria-hidden="true">mail</span>
                         <div><strong>General Inquiries</strong><a href="mailto:info@atreral.in">info@atreral.in</a></div>
                     </div>
-                    <div class="contact-card">
-                        <span class="material-symbols-outlined" aria-hidden="true">handshake</span>
-                        <div><strong>Partnerships</strong><a href="mailto:partner@atreal.in">partner@atreal.in</a></div>
-                    </div>
+                 
                     <div class="contact-card">
                         <span class="material-symbols-outlined" aria-hidden="true">phone</span>
                         <div><strong>Phone</strong><span>+91 70306 03067</span></div>
