@@ -24,6 +24,53 @@ function pageNavClass(string $page, string $activePage): string
     <link rel="stylesheet" href="assets/css/tailwind.css">
     <link rel="stylesheet" href="assets/css/loader.css">
     <link rel="stylesheet" href="assets/css/theme-pages.css">
+    
+    <style>
+        /* Seamless Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background-color: #17110e; /* Dark elegant background */
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        body.page-loaded .page-transition-overlay {
+            opacity: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add the overlay element
+            const overlay = document.createElement('div');
+            overlay.className = 'page-transition-overlay';
+            document.body.appendChild(overlay);
+
+            // Trigger the fade out of the overlay
+            requestAnimationFrame(() => {
+                document.body.classList.add("page-loaded");
+            });
+        });
+
+        // Handle back/forward cache (BFCache)
+        window.addEventListener("pageshow", function(event) {
+            if (event.persisted) {
+                document.body.classList.add("page-loaded");
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (link && link.href && !link.target && link.host === window.location.host && !link.hash) {
+                e.preventDefault();
+                document.body.classList.remove('page-loaded');
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 400); 
+            }
+        });
+    </script>
 </head>
 <body class="theme-page">
     <a class="skip-link" href="#main-content">Skip to content</a>

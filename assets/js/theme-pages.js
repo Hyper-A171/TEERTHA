@@ -55,4 +55,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- Global Scroll Animations ---
+    const animatedElements = document.querySelectorAll('.info-card, .purpose-card, .page-hero h1, .page-hero p, article h2, article p, article img, .form-group, .contact-info');
+    
+    // Add base class for animation
+    animatedElements.forEach(el => {
+        el.classList.add('fade-up-element');
+    });
+
+    const animationObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
+    });
+
+    animatedElements.forEach(el => {
+        animationObserver.observe(el);
+    });
 });

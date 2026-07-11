@@ -64,7 +64,7 @@ body.loading-active {
     margin: 0 auto 0.5rem auto;
     object-fit: contain;
     mix-blend-mode: multiply;
-    animation: loader-glow 4s ease-in-out infinite;
+    animation: loader-glow 2s ease-in-out infinite;
 }
 
 @media (min-width: 768px) {
@@ -155,6 +155,12 @@ body.loading-active {
 }
 
 @keyframes loader-glow {
-    0%, 100% { filter: drop-shadow(0 0 5px rgba(166, 59, 0, 0.15)); }
-    50% { filter: drop-shadow(0 0 15px rgba(166, 59, 0, 0.4)); }
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px rgba(166, 59, 0, 0.15));
+        transform: scale(0.95);
+    }
+    50% { 
+        filter: drop-shadow(0 0 25px rgba(166, 59, 0, 0.5));
+        transform: scale(1.1);
+    }
 }

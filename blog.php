@@ -50,9 +50,9 @@ require __DIR__ . '/includes/page-header.php';
 
                     <p style="margin-bottom: 1.5rem;">But by helping us understand the stories that make these sacred places so extraordinary.</p>
 
-                    <p style="margin-bottom: 1.5rem;">That thought became TEERTHA.</p>
+                    <p style="margin-bottom: 1.5rem;">That thought became <b>TEERTHA</b>.</p>
 
-                    <p style="margin-bottom: 1.5rem;">TEERTHA is built on a simple belief: technology should preserve culture, not replace it. Through immersive storytelling, digital preservation and meaningful experiences, we hope to help people discover the history, traditions and emotions that have always existed within our temples.</p>
+                    <p style="margin-bottom: 1.5rem;"><b>TEERTHA</b> is built on a simple belief: technology should preserve culture, not replace it. Through immersive storytelling, digital preservation and meaningful experiences, we hope to help people discover the history, traditions and emotions that have always existed within our temples.</p>
 
                     <p style="margin-bottom: 1.5rem;">This isn't just about preserving monuments.</p>
 
