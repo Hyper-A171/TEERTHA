@@ -6,7 +6,7 @@ require_once 'includes/page-header.php';
 
 <main class="page-main">
     <section class="hero hero--default" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;">
-        <div class="hero-inner fade-up-element">
+        <div class="hero-inner">
             <h1 class="hero-title" style="font-size: clamp(4rem, 10vw, 8rem); color: var(--primary); margin-bottom: 1rem;">404</h1>
             <p class="hero-subtitle" style="font-size: 1.5rem; max-width: 600px; margin: 0 auto 2rem;">
                 The path you are seeking remains hidden. 
