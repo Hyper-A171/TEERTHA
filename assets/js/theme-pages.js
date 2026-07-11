@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Global Scroll Animations ---
-    const animatedElements = document.querySelectorAll('.info-card, .purpose-card, .page-hero h1, .page-hero p, article h2, article p, article img, .form-group, .contact-info');
+    const animatedElements = document.querySelectorAll('.fade-up-element, .info-card, .purpose-card, .page-hero h1, .page-hero p, article h2, article p, article img, .form-group, .contact-info');
     
     // Add base class for animation
     animatedElements.forEach(el => {
