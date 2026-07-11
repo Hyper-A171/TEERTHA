@@ -53,13 +53,7 @@ require __DIR__ . '/includes/page-header.php';
 
             <div class="form-panel">
                 <h2>Send an Inquiry</h2>
-                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-                    <p style="color: #4CAF50; font-weight: 600; margin-bottom: 1rem;">Thank you! Your message has been sent successfully. We will get back to you soon.</p>
-                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
-                    <p style="color: #F44336; font-weight: 600; margin-bottom: 1rem;">There was a problem sending your message. Please try again or email us directly.</p>
-                <?php else: ?>
-                    <p>Complete the form below to send us a direct message.</p>
-                <?php endif; ?>
+                <p>Complete the form below to send us a direct message.</p>
                 <form class="form-grid" action="send-email.php" method="post">
                     <div class="form-field">
                         <label for="contact-name">Your name</label>

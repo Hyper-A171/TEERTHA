@@ -108,13 +108,7 @@ require __DIR__ . '/includes/page-header.php';
 
             <div class="form-panel">
                 <h2>Partnership Inquiry</h2>
-                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-                    <p style="color: #4CAF50; font-weight: 600; margin-bottom: 1rem;">Thank you! Your partnership inquiry has been sent successfully. We will be in touch soon.</p>
-                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
-                    <p style="color: #F44336; font-weight: 600; margin-bottom: 1rem;">There was a problem sending your message. Please try again or email us directly.</p>
-                <?php else: ?>
-                    <p>Provide a short overview and we can begin with the right context.</p>
-                <?php endif; ?>
+                <p>Provide a short overview and we can begin with the right context.</p>
                 <form class="form-grid" action="send-email.php" method="post">
                     <input type="hidden" name="redirect_to" value="partner.php">
                     <input type="hidden" name="Subject" value="Partnership Inquiry via Website">
