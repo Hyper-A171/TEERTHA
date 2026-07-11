@@ -7,13 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const is404Page = document.body.classList.contains('page-404');
 
         const handleScroll = () => {
-            // For inner pages and 404 page, threshold is 20. 
-            // For homepage, it dynamically triggers right before the hero section ends.
             const scrollThreshold = (isInnerPage || is404Page) ? 20 : (window.innerHeight - 100);
 
             if (window.scrollY > scrollThreshold) {
                 header.classList.add('is-scrolled');
-            } else if (is404Page) {
+            } else {
                 header.classList.remove('is-scrolled');
             }
         };
@@ -57,19 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Automatically close mobile menu if screen is resized to desktop view
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 1024 && !mobileNav.hasAttribute('hidden')) {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.classList.remove('is-active');
-                mobileNav.setAttribute('hidden', '');
-                document.body.style.overflow = '';
-            }
-        });
+        // window.addEventListener('resize', () => {
+        //     if (window.innerWidth > 1024 && !mobileNav.hasAttribute('hidden')) {
+        //         menuToggle.setAttribute('aria-expanded', 'false');
+        //         menuToggle.classList.remove('is-active');
+        //         mobileNav.setAttribute('hidden', '');
+        //         document.body.style.overflow = '';
+        //     }
+        // });
     }
 
     // --- Global Scroll Animations ---
     const animatedElements = document.querySelectorAll('.fade-up-element, .info-card, .purpose-card, .page-hero h1, .page-hero p, article h2, article p, article img, .form-group, .contact-info');
-    
+
     // Add base class for animation
     animatedElements.forEach(el => {
         el.classList.add('fade-up-element');
