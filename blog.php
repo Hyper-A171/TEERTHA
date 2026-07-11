@@ -9,10 +9,12 @@ require __DIR__ . '/includes/page-header.php';
 ?>
 
 <main id="main-content">
-    <section class="page-hero" style="min-height: 40vh; display: flex; align-items: center; justify-content: center; background: #1b100a; color: white;">
-        <div class="container" style="text-align: center;">
+    <section class="page-hero" style="min-height: 40vh; display: flex; align-items: center; justify-content: center; background-image: url('assets/images/temple-blog-hero.jpg'); background-size: cover; background-position: center; position: relative; color: white;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3);"></div>
+        <div class="container" style="text-align: center; position: relative; z-index: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+
             <h1 style="font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem;">Blog</h1>
-            <p style="color: #d1d5db; max-width: 600px; margin: 0 auto; font-size: 1.125rem;">Reflections on heritage, preservation, and the meaning of our journeys.</p>
+            <p style="color: #f3f4f6; max-width: 600px; margin: 0 auto; font-size: 1.125rem;">Reflections on heritage, preservation, and the meaning of our journeys.</p>
         </div>
     </section>
 
@@ -21,7 +23,6 @@ require __DIR__ . '/includes/page-header.php';
             <article>
                 <div style="margin-bottom: 3rem;">
                     <h2 style="font-family: 'Cinzel', serif; font-size: 2.5rem; color: #1f2937; margin-bottom: 1.5rem; line-height: 1.2;">Some Journeys Begin with a Question</h2>
-                    <img src="assets/images/temple-corridor.jpg" alt="Temple Corridor" style="width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 2rem;">
                 </div>
 
                 <div style="font-size: 1.125rem; line-height: 1.8; color: #4b5563;">
@@ -64,7 +65,7 @@ require __DIR__ . '/includes/page-header.php';
                     <p style="margin-bottom: 2.5rem;">And every story deserves to be experienced.</p>
 
                     <div style="margin-bottom: 2rem;">
-                        <img src="assets/images/sign.png" alt="Viral Jain Signature" style="height: 70px; object-fit: contain;">
+                        <img src="assets/images/sign.png" alt="Viral Jain Signature" style="height: 200px; object-fit: contain;">
                     </div>
 
                     <div style="border-top: 1px solid #e5e7eb; padding-top: 2rem; margin-top: 3rem; display: flex; align-items: center; gap: 1.25rem;">
