@@ -65,10 +65,10 @@ require __DIR__ . '/includes/page-header.php';
                     <p style="margin-bottom: 2.5rem;">And every story deserves to be experienced.</p>
 
                     <div style="margin-bottom: 2rem;">
-                        <img src="assets/images/sign.png" alt="Viral Jain Signature" style="height: 200px; object-fit: contain;">
+                        <img src="assets/images/sign.png" alt="Viral Jain Signature" style="height: 80px; object-fit: contain;">
                     </div>
 
-                    <div style="border-top: 1px solid #e5e7eb; padding-top: 2rem; margin-top: 3rem; display: flex; align-items: center; gap: 1.25rem;">
+                    <div style="border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 2rem; display: flex; align-items: center; gap: 1.25rem;">
                         <div style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden; background: #f3f4f6; border: 1px solid #e5e7eb; flex-shrink: 0; cursor: pointer;" onclick="openFounderModal()">
                             <img src="assets/images/founder.jpg" alt="Viral Jain" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transform: scale(1); transition: filter 0.4s ease, transform 0.4s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.transform='scale(1.1)'" onmouseout="this.style.filter='grayscale(100%)'; this.style.transform='scale(1)'" ontouchstart="this.style.filter='grayscale(0%)'; this.style.transform='scale(1.1)'" ontouchend="this.style.filter='grayscale(100%)'; this.style.transform='scale(1)'" onerror="this.style.display='none'">
                             </div>
